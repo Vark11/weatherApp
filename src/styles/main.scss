@@ -1,0 +1,139 @@
+$main-black: #121212;
+$main-grey: #292929;
+
+html {
+  background-color: $main-black;
+}
+
+
+.page {
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  position: absolute;
+  padding-top: 65px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+
+  .header {
+    z-index: 2;
+    background-color: $main-grey;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 65px;
+    border-bottom: 1px solid white;
+  }
+  
+  .main {
+    top: 0;
+    left: 0;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+
+    .weather-containers {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      
+      .day-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // justify-content: center;
+        border-radius: 10px;
+        
+        width: 20%;
+        height: 40%;
+        background-color: $main-grey;
+        font-family: "Rubik", sans-serif;
+        color: aliceblue;
+        font-optical-sizing: auto;
+        font-weight: 300;
+        font-style: normal;
+        font-size: 40px;
+        max-width: 300px;
+        min-width: 100px;
+        min-height: 400px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        z-index: 1;
+        
+        .current-day {
+          font-family: "Itim", cursive;
+          font-weight: 400;
+          font-style: normal;
+          font-size: 48px;
+        }
+
+        .current-date {
+          font-size: 25px;
+        }
+
+        .current-temperature {
+          user-select: none;
+          font-family: "Montserrat", sans-serif;
+          font-optical-sizing: auto;
+          font-weight: 300;
+          font-style: normal;
+          font-size: 90px;
+          display: flex;
+          justify-content: center;
+          align-items: start;
+          
+          .current-temperature-value {
+            padding-left: 33.2px;
+          }
+          .celcius {
+            font-size: 30px;
+            font-weight: 500;
+            padding-top: 15px;
+            padding-left: 4px;
+          }
+        }
+
+        .wind {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+
+          .wind-speed {
+            padding-left: 10px;
+            padding-top: 3px;
+            font-size: 27px;
+          }
+        }
+
+        .more-info-button {
+          width: 100%;
+          height: 40px;
+          color: rgb(139, 162, 173);
+          border: none;
+          background-color: $main-grey;
+          border-radius: 6px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #333D42;
+          }
+        }
+      }
+    } 
+  }
+}
