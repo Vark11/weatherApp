@@ -41,7 +41,13 @@ export function DayBlocksContainer({
     dayBlocksArray.push(
       <DayBlock
         temp={temp[i]}
-        day={DAYSOFWEEK[new Date().getDay() + 1]}
+        day={
+          i <= 1
+            ? i === 1
+              ? "Today"
+              : "Yesterday"
+            : DAYSOFWEEK[new Date().getDay() + i - 1]
+        }
         date={dates[i]}
         windSpeed={windSpeed[i]}
         windDirection={windDirection[i]}
