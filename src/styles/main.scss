@@ -1,6 +1,6 @@
 $main-black: #121212;
-$main-grey: #292929;
-
+$main-grey: #333D42;
+$day-block-hovered: #293135;
 html {
   background-color: $main-black;
 }
@@ -45,7 +45,6 @@ html {
       top: 80%;
       left: 30%;
     }
-
     .weather-containers {
       margin-top: 20px;
       margin-bottom: 20px;
@@ -57,12 +56,11 @@ html {
       height: 100%;
 
       .day-block {
+        
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        border-radius: 10px;
-
         width: 20%;
         height: 40%;
         background-color: $main-grey;
@@ -78,6 +76,10 @@ html {
         border: 1px solid rgba(255, 255, 255, 0.2);
         cursor: pointer;
         z-index: 1;
+
+        &:hover {
+          background-color: $day-block-hovered;
+        }
 
         .current-day {
           font-family: "Itim", cursive;
@@ -136,16 +138,12 @@ html {
         .more-info-button {
           width: 100%;
           height: 40px;
+          background: transparent;
           margin-top: 5px;
           color: rgb(139, 162, 173);
           border: none;
-          background-color: $main-grey;
           border-radius: 6px;
           cursor: pointer;
-
-          &:hover {
-            background-color: #333d42;
-          }
         }
       }
     }

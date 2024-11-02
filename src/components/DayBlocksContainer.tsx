@@ -52,6 +52,7 @@ export function DayBlocksContainer({
         windSpeed={windSpeed[i]}
         windDirection={windDirection[i]}
         weatherCode={weatherCode[i]}
+        index={i === 0 || i === days - 1 ? (i === 0 ? 0 : -1) : i === 1 ? 2 : 1}
       />
     );
   }
