@@ -5,7 +5,6 @@ html {
   background-color: $main-black;
 }
 
-
 .page {
   min-width: 100%;
   min-height: 100%;
@@ -28,7 +27,7 @@ html {
     height: 65px;
     border-bottom: 1px solid white;
   }
-  
+
   .main {
     top: 0;
     left: 0;
@@ -41,6 +40,12 @@ html {
     align-items: center;
     overflow: auto;
 
+    .load-button {
+      position: absolute;
+      top: 80%;
+      left: 30%;
+    }
+
     .weather-containers {
       margin-top: 20px;
       margin-bottom: 20px;
@@ -50,14 +55,14 @@ html {
       align-items: center;
       width: 100%;
       height: 100%;
-      
+
       .day-block {
         display: flex;
         flex-direction: column;
         align-items: center;
-        // justify-content: center;
+        justify-content: center;
         border-radius: 10px;
-        
+
         width: 20%;
         height: 40%;
         background-color: $main-grey;
@@ -73,7 +78,7 @@ html {
         border: 1px solid rgba(255, 255, 255, 0.2);
         cursor: pointer;
         z-index: 1;
-        
+
         .current-day {
           font-family: "Itim", cursive;
           font-weight: 400;
@@ -83,6 +88,7 @@ html {
 
         .current-date {
           font-size: 25px;
+          padding-bottom: 7px;
         }
 
         .current-temperature {
@@ -95,7 +101,7 @@ html {
           display: flex;
           justify-content: center;
           align-items: start;
-          
+
           .current-temperature-value {
             padding-left: 33.2px;
           }
@@ -112,17 +118,25 @@ html {
           flex-direction: row;
           justify-content: center;
           align-items: center;
+          padding-top: 15px;
 
           .wind-speed {
-            padding-left: 10px;
+            padding-left: 5px;
             padding-top: 3px;
             font-size: 27px;
+          }
+
+          .wind-direction {
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
 
         .more-info-button {
           width: 100%;
           height: 40px;
+          margin-top: 5px;
           color: rgb(139, 162, 173);
           border: none;
           background-color: $main-grey;
@@ -130,10 +144,10 @@ html {
           cursor: pointer;
 
           &:hover {
-            background-color: #333D42;
+            background-color: #333d42;
           }
         }
       }
-    } 
+    }
   }
 }
