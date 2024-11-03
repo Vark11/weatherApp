@@ -12,7 +12,7 @@ export async function getWeatherDataOpenMeteo() {
       "wind_speed_10m_max",
       "wind_direction_10m_dominant",
     ],
-    timezone: "Europe/Moscow",
+    timezone: "auto",
     past_days: 1,
     forecast_days: 4,
   };

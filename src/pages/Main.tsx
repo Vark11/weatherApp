@@ -4,6 +4,7 @@ import { getWeatherDataOpenMeteo } from "../weatherData/getWeatherFromServerOpen
 import { useState } from "react";
 import { ReactElement } from "react";
 import { DayBlocksContainer } from "../components/DayBlocksContainer";
+import { Settings } from "../components/Settings";
 import {
   makeTemp,
   makeDates,
@@ -67,14 +68,18 @@ function Main(): ReactElement {
         <button className="load-button" onClick={handleClick}>
           LOADWEATHER
         </button>
-        <DayBlocksContainer
-          days={daysOnScreenCount}
-          temp={madeTemp}
-          dates={madeDates}
-          windSpeed={madeWindSpeed}
-          windDirection={madeWindDirection}
-          weatherCode={madeWeatherCode}
-        />
+        <div className="center-div">
+          <Settings />
+          <DayBlocksContainer
+            days={daysOnScreenCount}
+            temp={madeTemp}
+            dates={madeDates}
+            windSpeed={madeWindSpeed}
+            windDirection={madeWindDirection}
+            weatherCode={madeWeatherCode}
+          />
+        </div>
+        
       </main>
     </div>
   );
