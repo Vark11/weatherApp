@@ -3,8 +3,8 @@ import "../styles/main.scss";
 import { getWeatherDataOpenMeteo } from "../weatherData/getWeatherFromServerOpenMeteo";
 import { useState } from "react";
 import { ReactElement } from "react";
-import { DayBlocksContainer } from "../components/DayBlocksContainer";
-import { Settings } from "../components/Settings";
+import { DayBlocksContainer } from "../components/DayBlocksContainer/DayBlocksContainer";
+import { Settings } from "../components/Settings/Settings";
 import {
   makeTemp,
   makeDates,
@@ -79,7 +79,6 @@ function Main(): ReactElement {
             weatherCode={madeWeatherCode}
           />
         </div>
-        
       </main>
     </div>
   );

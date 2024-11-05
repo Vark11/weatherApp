@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import DayBlock from "./DayBlock";
+import DayBlock from "./DayBlock/DayBlock";
 
 interface dayBlockArguments {
   days: number;
@@ -40,6 +40,7 @@ export function DayBlocksContainer({
   for (let i = 0; i < days; i++) {
     dayBlocksArray.push(
       <DayBlock
+        key={i}
         temp={temp[i]}
         day={
           i <= 1

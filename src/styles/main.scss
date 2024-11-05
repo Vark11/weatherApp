@@ -63,7 +63,7 @@ html {
 
       .settings {
         background-color: $main-grey;
-        width: 1500px;
+        width: 1508px;
         height: 275px;
         border-radius: 20px;
         border: 1px solid $main-border;
@@ -80,15 +80,87 @@ html {
           height: 100%;
           width: 33%;
           border-right: 1px solid $main-border;
+          box-sizing: content-box;
+          position: relative;
+
+          .search-menu {
+            height: 215px;
+            width: 444px;
+            z-index: 1;
+            background-color: #475055;
+            position: absolute;
+            border-bottom-left-radius: 20px;
+            // border-bottom-right-radius: 20px;
+            top: 40px;
+
+            .search-menu-array {
+              border-top: 1px solid $main-border;
+              margin-top: 30px;
+              width: 444px;
+              height: 183px;
+              overflow-y: scroll;
+              overflow-x: hidden;
+              scrollbar-color: rgb(123, 123, 123) #475055;
+
+              .search-menu-array-elem {
+                width: 400px;
+                margin-left: 15px;
+                padding-left: 4px;
+                height: 60px;
+                cursor: pointer;
+                color: rgb(139, 162, 173);
+                font-family: system-ui, -apple-system, "Segoe UI", Roboto;
+                font-weight: 500;
+                background-color: transparent;
+                position: relative;
+
+                .search-menu-array-elem-location-name-h2 {
+                  margin: 0px;
+                  margin-top: 5px;
+                }
+
+                .search-menu-array-elem-long-and-lat-div {
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: start;
+                  align-items: center;
+                  padding-top: 5px;
+
+                  .search-menu-array-elem-long {
+                    padding-left: 20px;
+                  }
+                }
+
+                .search-menu-array-elem-delete-div {
+                  position: absolute;
+                  top: 10px;
+                  left: 90%;
+                  border-radius: 20px;
+                  width: 35px;
+                  height: 35px;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+
+                  &:hover {
+                    background-color: #70777b;
+                    color: aliceblue;
+                  }
+                }
+              }
+            }
+          }
 
           .input-form {
+            z-index: 2;
             border: 2px solid transparent;
             margin-top: 20px;
             background-color: #475055;
             border-radius: 20px;
             display: flex;
+            width: 440px;
             flex-direction: row;
-            justify-content: center;
+            justify-content: start;
             align-items: center;
             
             .span-svg-search {
@@ -111,7 +183,7 @@ html {
                 font-size: 14px;
                 border: none;
                 height: 20px;
-                width: 400px;
+                width: 350px;
                 color: 
                 rgb(242, 242, 242);
                 outline-style: none;
@@ -125,7 +197,28 @@ html {
                   color: rgb(139, 162, 173);
                 }
               }
-            } 
+            }
+            
+            .input-cleaner-button {
+              background: transparent;
+              position: relative;
+              border: none;
+              cursor: pointer;
+              
+              margin-right: 15px;
+              border-radius: 20px;
+              width: 50px;
+              height: 35px;
+
+              &:hover {
+                background-color: #70777b;
+                border-radius: 18px;
+              }
+
+              .input-cleaner-svg {
+                padding-top: 4px;
+              }
+            }
           }
         }
 
@@ -133,23 +226,33 @@ html {
           display: flex;
           flex-direction: column;
           justify-content: space-around;
-          align-items: start;
+          align-items: center;
           height: 100%;
-          width: 27%;
+          width: 33%;
           padding-left: 15px;
           padding-right: 15px;
           border-right: 1px solid $main-border;
 
-          .title-settings {
-            padding-left: 20px;
-            padding-bottom: 0px;
-            font-size: 22px;
-            font-weight: 400;
-            margin-top: 0px;
-            margin-bottom: 0px;
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto;
-            color: rgb(139, 162, 173);
+          .current-locations-h2-div {
+            width: 460px;
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: center;
+
+            .title-settings {
+              padding-left: 10px;
+              padding-bottom: 0px;
+              font-size: 22px;
+              font-weight: 400;
+              margin-top: 0px;
+              margin-bottom: 0px;
+              font-family: system-ui, -apple-system, "Segoe UI", Roboto;
+              color: rgb(139, 162, 173);
+            }
           }
+          
+
           .lat-and-long {
             position: relative;
             padding-left: 15px;
@@ -173,7 +276,7 @@ html {
               font-size: 16px;
               line-height: 20px;
               font-weight: 400;
-              width: 340px;
+              width: 430px;
               height: 20px;
               padding-top: 28px;
               padding-left: 12px;
@@ -185,6 +288,7 @@ html {
           .location-div {
             position: relative;
             padding-left: 15px;
+            padding-right: 15px;
   
             .location-label {
               position: absolute;
@@ -204,7 +308,7 @@ html {
               font-size: 16px;
               line-height: 20px;
               font-weight: 400;
-              width: 340px;
+              width: 430px;
               height: 20px;
               padding-top: 28px;
               padding-left: 12px;
@@ -218,63 +322,80 @@ html {
           display: flex;
           flex-direction: column;
           justify-content: space-around;
-          align-items: start;
+          align-items: center;
           height: 100%;
-          width: 40%;
-          padding-left: 15px;
+          width: 33%;
+          
+          .add-locations-h2-div {
+            width: 460px;
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: center;
 
-          .title-settings {
-            padding-left: 20px;
-            padding-bottom: 0px;
-            font-size: 22px;
-            font-weight: 400;
-            margin-top: 0px;
-            margin-bottom: 0px;
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto;
-            color: rgb(139, 162, 173);
-          }
-          .lat-and-long {
-            position: relative;
-            padding-left: 15px;
-            padding-right: 15px;
-  
-            .lat-and-long-label {
-              position: absolute;
-              padding-left: 12px;
-              padding-top: 6px;
-              font-size: 15px;
+            .title-settings {
+              padding-left: 20px;
+              padding-bottom: 0px;
+              font-size: 22px;
+              font-weight: 400;
+              margin-top: 0px;
+              margin-bottom: 0px;
               font-family: system-ui, -apple-system, "Segoe UI", Roboto;
               color: rgb(139, 162, 173);
             }
-  
-            .lat-and-long-input {
-              background-color: transparent;
-              border: 1px solid $main-border;
-              border-radius: 6px;
-              color: rgb(222, 226, 230);
-              cursor: text;
-              font-size: 16px;
-              line-height: 20px;
-              font-weight: 400;
-              width: 340px;
-              height: 20px;
-              padding-top: 28px;
-              padding-left: 12px;
-              padding-right: 12px;
-              padding-bottom: 10px;
 
-              &:focus {
-                outline-style: solid;
-                outline-width: 1px;
-                outline-color: aliceblue;
-                outline-offset: 10;
+        }
+
+          .lat-and-long-add-location-div {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 430px;
+
+            .lat-and-long {
+              position: relative;
+    
+              .lat-and-long-label {
+                position: absolute;
+                padding-left: 12px;
+                padding-top: 6px;
+                font-size: 15px;
+                font-family: system-ui, -apple-system, "Segoe UI", Roboto;
+                color: rgb(139, 162, 173);
+              }
+    
+              .lat-and-long-input {
+                background-color: transparent;
+                border: 1px solid $main-border;
+                border-radius: 6px;
+                color: rgb(222, 226, 230);
+                cursor: text;
+                font-size: 16px;
+                line-height: 20px;
+                font-weight: 400;
+                width: 190px;
+                height: 20px;
+                padding-top: 28px;
+                padding-left: 12px;
+                // padding-right: 12px;
+                padding-bottom: 10px;
+  
+                &:focus {
+                  outline-style: solid;
+                  outline-width: 1px;
+                  outline-color: aliceblue;
+                  outline-offset: 10;
+                }
               }
             }
           }
+          
   
           .location-div {
             position: relative;
-            padding-left: 15px;
+            
+            
   
             .location-label {
               position: absolute;
@@ -294,14 +415,65 @@ html {
               font-size: 16px;
               line-height: 20px;
               font-weight: 400;
-              width: 340px;
+              width: 400px;
               height: 20px;
               padding-top: 28px;
-              padding-left: 12px;
-              padding-right: 12px;
+              padding-left: 14px;
+              padding-right: 14px;
               padding-bottom: 10px;
+
+              &:focus {
+                outline-style: solid;
+                outline-width: 1px;
+                outline-color: aliceblue;
+                outline-offset: 10;
+              }
             }
           }
+
+          .add-location-button-div-positioning {
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: center;
+            width: 460px;
+
+            .add-location-button-div {
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+              margin-top: 9px;
+              margin-bottom: 9px;
+              margin-left: 10px;
+              height: 40px; 
+              width: 95px;
+              border-radius: 20px;
+              outline: none;
+              border: 1px solid $main-border;
+              cursor: pointer;
+              background-color: transparent;
+              color:rgb(139, 162, 173);
+  
+              &:hover {
+                background-color:#475055;
+              }
+  
+              .add-location-button {
+                
+                outline: none;
+                border: none;
+                cursor: pointer;
+                background: transparent;
+                color:rgb(139, 162, 173);
+                font-family: system-ui, -apple-system, "Segoe UI", Roboto;
+                font-size: 16px;
+                font-weight: 500;
+                padding-bottom: 4px;
+              }
+            }
+          }
+          
         }
         
       }
@@ -344,6 +516,7 @@ html {
   
           .current-day {
             font-family: system-ui, -apple-system, "Segoe UI", Roboto;
+            color: rgb(139, 162, 173);
             font-weight: 300;
             font-style: normal;
             font-size: 48px;
@@ -354,6 +527,7 @@ html {
             font-size: 25px;
             font-weight: 200;
             padding-bottom: 7px;
+            color: rgb(139, 162, 173);
           }
   
           .current-temperature {
@@ -389,12 +563,14 @@ html {
               padding-left: 5px;
               padding-top: 3px;
               font-size: 27px;
+              color: rgb(139, 162, 173);
             }
   
             .wind-direction {
               display: flex;
               align-items: center;
               justify-content: center;
+              color: rgb(139, 162, 173);
             }
           }
   

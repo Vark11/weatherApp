@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
-import { WeatherIcon } from "./WeatherIcon";
-import { WindDirection } from "./WindDirection";
+import { WeatherIcon } from "./WeatherIconAndWindDirection/WeatherIcon";
+import { WindDirection } from "./WeatherIconAndWindDirection/WindDirection";
 import { useEffect } from "react";
 import CSS from "csstype";
 
@@ -34,7 +34,7 @@ const styledTodayBlock: CSS.Properties = {
 
 export default function DayBlock(weather: weatherDay): ReactElement {
   useEffect(() => changeBackgroundDayBlock(weather), [weather]);
-  
+
   return (
     <div
       className="day-block"
@@ -88,14 +88,19 @@ function changeBackgroundDayBlock(weather: weatherDay): void {
       dayBlock.style.backgroundColor = "#293135";
     });
     dayBlock.addEventListener("mouseout", () => {
-      if (dayBlock.id === "dayBlock" + (new Date().getMonth() + 1) + "." + new Date().getDate()) {
+      if (
+        dayBlock.id ===
+        "dayBlock" + (new Date().getMonth() + 1) + "." + new Date().getDate()
+      ) {
         dayBlock.style.backgroundColor = "#475055";
-      } else if (dayBlock.id === "dayBlock" + (new Date().getMonth() + 1) + ".0" + new Date().getDate()) {
+      } else if (
+        dayBlock.id ===
+        "dayBlock" + (new Date().getMonth() + 1) + ".0" + new Date().getDate()
+      ) {
         dayBlock.style.backgroundColor = "#475055";
       } else {
         dayBlock.style.backgroundColor = "";
       }
-      
     });
   }
 }
