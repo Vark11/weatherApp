@@ -11,31 +11,51 @@ export function Location({
   disabled,
   reference,
 }: LocationT): ReactElement {
+  return (
+    <div className="location-div">
+      <label className="location-label">Location name</label>
+      {disabled ? (
+        <InputLocationDisabled location={location} />
+      ) : (
+        <InputLocation reference={reference!} />
+      )}
+    </div>
+  );
+}
+
+function InputLocationDisabled({ location }: { location: string }) {
+  return (
+    <input
+      type="text"
+      maxLength={10}
+      className="location-input"
+      disabled={true}
+      value={location}
+      placeholder="..."
+    ></input>
+  );
+}
+
+function InputLocation({
+  reference,
+}: {
+  reference: React.RefObject<HTMLInputElement>;
+}) {
   function handleLocationInputChange(e: ChangeEvent<HTMLInputElement>) {
     reference!.current!.value = e.target.value;
     // checkLocationValue(reference, setLocationError);
   }
 
   return (
-    <div className="location-div">
-      <label className="location-label">Location name</label>
-      <input
-        type="text"
-        maxLength={10}
-        ref={reference}
-        className="location-input"
-        disabled={disabled}
-        value={location}
-        placeholder="..."
-        onChange={handleLocationInputChange}
-        onKeyDown={(event) => {
-          return (
-            (event.charCode > 64 && event.charCode < 91) ||
-            (event.charCode > 96 && event.charCode < 123)
-          );
-        }}
-      ></input>
-    </div>
+    <input
+      type="text"
+      maxLength={10}
+      ref={reference}
+      className="location-input"
+      disabled={false}
+      placeholder="..."
+      onChange={handleLocationInputChange}
+    ></input>
   );
 }
 

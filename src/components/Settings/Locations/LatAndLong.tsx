@@ -17,31 +17,25 @@ interface LatAndLongProps {
 export function LatAndLong(latAndLongProps: LatAndLongProps): ReactElement {
   const [showError, setShowError] = useState(false);
 
-  function handleLatAndLongInputChange(e: ChangeEvent<HTMLInputElement>) {
+  function checkError() {
     checkLatAndLongValues(latAndLongProps, setShowError);
-    latAndLongProps.reference!.current!.value = e.target.value;
   }
 
   return (
     <div className="lat-and-long">
       <label className="lat-and-long-label">{latAndLongProps.latOrLong}</label>
-      <input
-        ref={latAndLongProps.reference}
-        type="number"
-        step="0.001"
-        maxLength={9}
-        className="lat-and-long-input"
-        disabled={latAndLongProps.disabled}
-        value={
-          latAndLongProps.long || latAndLongProps.lat
-            ? latAndLongProps.lat
-              ? latAndLongProps.lat
-              : latAndLongProps.long
-            : ""
-        }
-        onChange={handleLatAndLongInputChange}
-        placeholder="..."
-      ></input>
+      {latAndLongProps.disabled ? (
+        <InputLatAndLongDisabled
+          latOrLong={
+            latAndLongProps.lat ? latAndLongProps.lat : latAndLongProps.long
+          }
+        />
+      ) : (
+        <InputLatAndLong
+          reference={latAndLongProps.reference}
+          checkError={checkError}
+        />
+      )}
       {showError ? (
         <div className="lat-long-error">
           {latAndLongProps.latOrLong === "Latitude"
@@ -52,6 +46,50 @@ export function LatAndLong(latAndLongProps: LatAndLongProps): ReactElement {
         <></>
       )}
     </div>
+  );
+}
+
+function InputLatAndLong({
+  reference,
+  checkError,
+}: {
+  reference: React.RefObject<HTMLInputElement> | undefined;
+  checkError: () => void;
+}) {
+  function handleLatAndLongInputChange(e: ChangeEvent<HTMLInputElement>) {
+    checkError();
+    reference!.current!.value = e.target.value;
+  }
+
+  return (
+    <input
+      ref={reference}
+      type="number"
+      step="0.001"
+      maxLength={9}
+      className="lat-and-long-input"
+      disabled={false}
+      onChange={handleLatAndLongInputChange}
+      placeholder="..."
+    ></input>
+  );
+}
+
+function InputLatAndLongDisabled({
+  latOrLong,
+}: {
+  latOrLong: string | undefined;
+}) {
+  return (
+    <input
+      type="number"
+      step="0.001"
+      maxLength={9}
+      className="lat-and-long-input"
+      disabled={true}
+      value={latOrLong}
+      placeholder="..."
+    ></input>
   );
 }
 
