@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "../styles/main.scss";
 import { getWeatherDataOpenMeteo } from "../weatherData/getWeatherFromServerOpenMeteo";
 import { useState } from "react";
@@ -34,6 +34,9 @@ const initialWeatherData = {
 };
 
 function Main(): ReactElement {
+  const [latitude, setLatitude] = useState<number>(55.751244);
+  const [longitude, setLongitued] = useState<number>(37.618423);
+  const [locationName, setLocationName] = useState<string>("Moscow");
   const [weatherData, setWeatherData] =
     useState<weatherData>(initialWeatherData);
   const [madeTemp, setMadeTemp] = useState<number[]>([]);
@@ -51,13 +54,13 @@ function Main(): ReactElement {
     setMadeWindDirection(makeWindDirection(weatherData, daysOnScreenCount));
     setMadeWeatherCode(weatherData.daily.weatherCode);
   }, [weatherData, currentDateObj, daysOnScreenCount]);
-  // useEffect(() => {
-  //   handleClick();
-  // }, [])
 
-  async function handleClick() {
-    const weather = await getWeatherDataOpenMeteo();
-    console.log(weather);
+  useEffect(() => {
+    getWeatherData(latitude, longitude);
+  }, [latitude, longitude]);
+
+  async function getWeatherData(latitude: number, longitude: number) {
+    const weather = await getWeatherDataOpenMeteo(latitude, longitude);
 
     setWeatherData(makeWeatherData(weather));
   }
@@ -65,11 +68,18 @@ function Main(): ReactElement {
   return (
     <div className="page">
       <main className="main">
-        <button className="load-button" onClick={handleClick}>
+        {/* <button className="load-button" onClick={() => getWeatherData(latitude, longitude)}>
           LOADWEATHER
-        </button>
+        </button> */}
         <div className="center-div">
-          <Settings />
+          <Settings
+            latitude={latitude}
+            longitude={longitude}
+            locationName={locationName}
+            setLatitude={setLatitude}
+            setLongitude={setLongitued}
+            setLocationName={setLocationName}
+          />
           <DayBlocksContainer
             days={daysOnScreenCount}
             temp={madeTemp}

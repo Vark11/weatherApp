@@ -1,10 +1,29 @@
-import { ReactElement, useState, useRef, Dispatch, SetStateAction } from "react";
+import {
+  ReactElement,
+  useState,
+  useRef,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { useShowInputCleaner } from "../../../hooks/useShowInputCleaner";
 import { ChangeEvent, FocusEvent } from "react";
 import { InputCleaner } from "./InputCleaner";
 import { SearchMenu } from "./SearchMenu";
 
-export function Search({cookieRefreshed, setCookieRefreshed}: {cookieRefreshed: string, setCookieRefreshed: Dispatch<SetStateAction<string>>;}): ReactElement {
+interface SearchProps {
+  setLatitude: Dispatch<SetStateAction<number>>;
+  setLongitude: Dispatch<SetStateAction<number>>;
+  setLocationName: Dispatch<SetStateAction<string>>;
+  cookieRefreshed: string;
+  setCookieRefreshed: Dispatch<SetStateAction<string>>;
+}
+export function Search({
+  cookieRefreshed,
+  setCookieRefreshed,
+  setLatitude,
+  setLocationName,
+  setLongitude,
+}: SearchProps): ReactElement {
   const [showCleanerButton, catchInputChange] = useShowInputCleaner();
   const inputRef = useRef<HTMLInputElement>(null);
   const formInputRef = useRef<HTMLFormElement>(null);
@@ -18,11 +37,10 @@ export function Search({cookieRefreshed, setCookieRefreshed}: {cookieRefreshed: 
   function handleBlurOnForm(): void {
     formInputRef.current!.style.border = "2px solid transparent";
     setShowSearchMenu(false);
-    
   }
 
   function handleBlurOnInput(e: FocusEvent<HTMLInputElement>): void {
-    e.preventDefault();    
+    e.preventDefault();
   }
 
   function handleChangeOnInput(e: ChangeEvent<HTMLInputElement>) {
@@ -33,7 +51,6 @@ export function Search({cookieRefreshed, setCookieRefreshed}: {cookieRefreshed: 
 
   return (
     <div className="recent-locations">
-      
       <form
         className="input-form"
         ref={formInputRef}
@@ -72,8 +89,19 @@ export function Search({cookieRefreshed, setCookieRefreshed}: {cookieRefreshed: 
           <></>
         )}
       </form>
-      {showSearchMenu ? <SearchMenu inputValue={inputRef.current!.value} cookieRefreshed={cookieRefreshed} setCookieRefreshed={setCookieRefreshed} reference={inputRef}/> : <></>}
-      {/* <SearchMenu inputValue={''} cookieRefreshed={cookieRefreshed} setCookieRefreshed={setCookieRefreshed}/> */}
+      {showSearchMenu ? (
+        <SearchMenu
+          inputValue={inputRef.current!.value}
+          cookieRefreshed={cookieRefreshed}
+          setCookieRefreshed={setCookieRefreshed}
+          reference={inputRef}
+          setLatitude={setLatitude}
+          setLongitude={setLongitude}
+          setLocationName={setLocationName}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

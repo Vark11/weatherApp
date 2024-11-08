@@ -1,9 +1,12 @@
 import { fetchWeatherApi } from "openmeteo";
 
-export async function getWeatherDataOpenMeteo() {
+export async function getWeatherDataOpenMeteo(
+  latitude: number,
+  longitude: number
+) {
   const params = {
-    latitude: 55.751244,
-    longitude: 37.618423,
+    latitude: latitude,
+    longitude: longitude,
     current: "temperature_2m",
     daily: [
       "weather_code",

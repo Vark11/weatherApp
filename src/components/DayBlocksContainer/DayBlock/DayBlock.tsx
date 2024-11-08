@@ -22,12 +22,6 @@ const styledDayBlockLast: CSS.Properties = {
   borderTopRightRadius: "20px",
   borderBottomRightRadius: "20px",
 };
-const styledMoreInfoButtonFirst: CSS.Properties = {
-  borderBottomLeftRadius: "12px",
-};
-const styledMoreInfoButtonLast: CSS.Properties = {
-  borderBottomRightRadius: "12px",
-};
 const styledTodayBlock: CSS.Properties = {
   backgroundColor: "#475055",
 };
@@ -65,18 +59,9 @@ export default function DayBlock(weather: weatherDay): ReactElement {
         </div>
         <div className="wind-speed">{weather.windSpeed}km/h</div>
       </div>
-      <button
-        className="more-info-button"
-        style={
-          weather.index !== 1
-            ? weather.index === -1
-              ? styledMoreInfoButtonLast
-              : styledMoreInfoButtonFirst
-            : undefined
-        }
-      >
+      <a href="http://localhost:3000/" className="more-info-ref">
         More info
-      </button>
+      </a>
     </div>
   );
 }

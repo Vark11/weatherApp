@@ -10,7 +10,7 @@ export const useShowInputCleaner = (): [boolean, (value: string) => void] => {
     } else {
       setShowCleanerButton(false);
     }
-  }, [inputValue])
+  }, [inputValue]);
   function catchInputChange(value: string): void {
     setInputValue(value);
   }

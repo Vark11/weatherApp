@@ -3,7 +3,11 @@ import { LatAndLong } from "../LatAndLong";
 import { Location } from "../Location";
 import { AddLocationButton } from "./addLocationButtonFolder/AddLocationButton";
 
-export function AddLocation({setCookieRefreshed}: {setCookieRefreshed: Dispatch<SetStateAction<string>>}): ReactElement {
+export function AddLocation({
+  setCookieRefreshed,
+}: {
+  setCookieRefreshed: Dispatch<SetStateAction<string>>;
+}): ReactElement {
   const lat = useRef(null);
   const long = useRef(null);
   const location = useRef(null);
@@ -31,9 +35,12 @@ export function AddLocation({setCookieRefreshed}: {setCookieRefreshed: Dispatch<
         />
       </div>
       <Location location="" disabled={false} reference={location} />
-      <div className="add-location-button-div-positioning">
-        <AddLocationButton lat={lat} long={long} location={location} setCookieRefreshed={setCookieRefreshed}/>
-      </div>
+      <AddLocationButton
+        lat={lat}
+        long={long}
+        location={location}
+        setCookieRefreshed={setCookieRefreshed}
+      />
     </div>
   );
 }

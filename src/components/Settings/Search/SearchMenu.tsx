@@ -12,6 +12,9 @@ interface SearchMenuProps {
   cookieRefreshed: string;
   reference: React.RefObject<HTMLInputElement>;
   setCookieRefreshed: Dispatch<SetStateAction<string>>;
+  setLatitude: Dispatch<SetStateAction<number>>;
+  setLongitude: Dispatch<SetStateAction<number>>;
+  setLocationName: Dispatch<SetStateAction<string>>;
 }
 
 interface returnedValueFromCookie {
@@ -25,6 +28,9 @@ interface SearchResultComponentProps {
   searchResult: returnedValueFromCookie[];
   elem: returnedValueFromCookie;
   handleDeleteButtonClick: (name: string) => void;
+  setLatitude: Dispatch<SetStateAction<number>>;
+  setLongitude: Dispatch<SetStateAction<number>>;
+  setLocationName: Dispatch<SetStateAction<string>>;
 }
 
 export function SearchMenu({
@@ -32,12 +38,31 @@ export function SearchMenu({
   cookieRefreshed,
   reference,
   setCookieRefreshed,
+  setLatitude,
+  setLongitude,
+  setLocationName,
 }: SearchMenuProps): ReactElement {
   const [searchResults, setSearchResults] = useState<ReactElement[]>([]);
 
   useEffect(() => {
-    setSearchResults(getSearchResultsComponent(inputValue, setCookieRefreshed, reference));
-  }, [inputValue, cookieRefreshed, setCookieRefreshed, reference]);
+    setSearchResults(
+      getSearchResultsComponent(
+        inputValue,
+        setCookieRefreshed,
+        setLatitude,
+        setLongitude,
+        setLocationName
+      )
+    );
+  }, [
+    inputValue,
+    cookieRefreshed,
+    setCookieRefreshed,
+    reference,
+    setLatitude,
+    setLocationName,
+    setLongitude,
+  ]);
 
   return (
     <div className="search-menu">
@@ -46,9 +71,23 @@ export function SearchMenu({
   );
 }
 
-function getSearchResultsComponent(inputValue: string, setCookieRefreshed: Dispatch<SetStateAction<string>>, reference: React.RefObject<HTMLInputElement>): ReactElement[] {
+function getSearchResultsComponent(
+  inputValue: string,
+  setCookieRefreshed: Dispatch<SetStateAction<string>>,
+  setLatitude: Dispatch<SetStateAction<number>>,
+  setLongitude: Dispatch<SetStateAction<number>>,
+  setLocationName: Dispatch<SetStateAction<string>>
+): ReactElement[] {
   const searchResultComponentsArray: ReactElement[] = [];
   const searchResults = getCookie(inputValue);
+  if (searchResults.length === 0) {
+    searchResultComponentsArray.push(
+      <h2 key={-1} className="search-menu-array-elem-location-name-h3">
+        No matches
+      </h2>
+    );
+    return searchResultComponentsArray;
+  }
 
   function handleDeleteButtonClick(name: string) {
     document.cookie = name + "=; Max-Age=0";
@@ -57,39 +96,70 @@ function getSearchResultsComponent(inputValue: string, setCookieRefreshed: Dispa
 
   searchResults.forEach((elem, index) => {
     searchResultComponentsArray.push(
-      <SearchResultComponent key={index} index={index} elem={elem} searchResult={searchResults} handleDeleteButtonClick={handleDeleteButtonClick}/>
+      <SearchResultComponent
+        key={index}
+        index={index}
+        elem={elem}
+        searchResult={searchResults}
+        handleDeleteButtonClick={handleDeleteButtonClick}
+        setLatitude={setLatitude}
+        setLongitude={setLongitude}
+        setLocationName={setLocationName}
+      />
     );
   });
   return searchResultComponentsArray;
 }
 
-function SearchResultComponent({index, searchResult, elem, handleDeleteButtonClick}: SearchResultComponentProps): ReactElement {
+function SearchResultComponent({
+  index,
+  searchResult,
+  elem,
+  handleDeleteButtonClick,
+  setLatitude,
+  setLongitude,
+  setLocationName,
+}: SearchResultComponentProps): ReactElement {
+  function handleLoadLocationClick() {
+    setLatitude(Number(Number(elem.latitude).toFixed(6)));
+    setLongitude(Number(Number(elem.longitude).toFixed(6)));
+    setLocationName(elem.location);
+  }
+
   return (
     <div
-        style={
-          index !== searchResult.length - 1
-            ? { borderBottom: "1px solid rgba(255, 255, 255, 0.2)" }
-            : undefined
-        }
-        className="search-menu-array-elem"
-        key={index}
-        onMouseDown={(e) => e.preventDefault()}
-      >
-        <h3 className="search-menu-array-elem-location-name-h2">
-          {elem.location}
-        </h3>
-        <div className="search-menu-array-elem-long-and-lat-div">
-          <div className="search-menu-array-elem-lat">
-            latitude: {elem.latitude}
-          </div>
-          <div className="search-menu-array-elem-long">
-            longitude: {elem.longitude}
-          </div>
+      style={
+        index !== searchResult.length - 1
+          ? { borderBottom: "1px solid rgba(255, 255, 255, 0.2)" }
+          : undefined
+      }
+      className="search-menu-array-elem"
+      key={index}
+      onMouseDown={(e) => e.preventDefault()}
+      onClick={handleLoadLocationClick}
+    >
+      <h3 className="search-menu-array-elem-location-name-h2">
+        {elem.location}
+      </h3>
+      <div className="search-menu-array-elem-long-and-lat-div">
+        <div className="search-menu-array-elem-lat">
+          latitude: {elem.latitude}
         </div>
-        {index !== 0 ? <div
+        <div className="search-menu-array-elem-long">
+          longitude: {elem.longitude}
+        </div>
+      </div>
+      {index !== 0 ? (
+        <div
           className="search-menu-array-elem-delete-div"
-          onMouseDown={(e) => e.preventDefault()}
-          onClick={() => {handleDeleteButtonClick(elem.location)}}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleDeleteButtonClick(elem.location);
+          }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +173,10 @@ function SearchResultComponent({index, searchResult, elem, handleDeleteButtonCli
               <path d="M7.71875,6.28125l-1.4375,1.4375l17.28125,17.28125l-17.28125,17.28125l1.4375,1.4375l17.28125,-17.28125l17.28125,17.28125l1.4375,-1.4375l-17.28125,-17.28125l17.28125,-17.28125l-1.4375,-1.4375l-17.28125,17.28125z"></path>
             </g>
           </svg>
-        </div> : <></>}
-      </div>
+        </div>
+      ) : (
+        <></>
+      )}
+    </div>
   );
 }
