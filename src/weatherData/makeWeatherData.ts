@@ -6,6 +6,9 @@ interface weatherData {
     windDirection10mDominant: number[];
     weatherCode: number[];
   };
+  current: {
+    temperature2m: number;
+  };
 }
 
 interface weatherBeforeMadeIt {
@@ -16,19 +19,27 @@ interface weatherBeforeMadeIt {
     windDirection10mDominant: Float32Array;
     weatherCode: Float32Array;
   };
+  current: {
+    temperature2m: number;
+  }
 }
 
 export function makeTemp(weatherData: weatherData): number[] {
   const madeTemp: number[] = [];
 
   for (let i = 0; i < weatherData.daily.temperature2mMax.length; i++) {
-    madeTemp.push(
-      Math.round(
-        (weatherData.daily.temperature2mMax[i] +
-          weatherData.daily.temperature2mMin[i]) /
-          2
-      )
-    );
+    if (i === 1) {
+      madeTemp.push(Number(weatherData.current.temperature2m.toFixed(0)));
+    } else {
+      madeTemp.push(
+        Math.round(
+          (weatherData.daily.temperature2mMax[i] +
+            weatherData.daily.temperature2mMin[i]) /
+            2
+        )
+      );
+    }
+    
   }
 
   return madeTemp;
@@ -36,6 +47,7 @@ export function makeTemp(weatherData: weatherData): number[] {
 
 export function makeWeatherData(weather: weatherBeforeMadeIt): weatherData {
   return {
+    current: {temperature2m: weather.current.temperature2m},
     daily: {
       temperature2mMax: [
         weather.daily.temperature2mMax[0],

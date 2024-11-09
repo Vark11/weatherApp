@@ -102,6 +102,15 @@ export function Search({
       ) : (
         <></>
       )}
+      {/* <SearchMenu
+          inputValue={"mos"}
+          cookieRefreshed={cookieRefreshed}
+          setCookieRefreshed={setCookieRefreshed}
+          reference={inputRef}
+          setLatitude={setLatitude}
+          setLongitude={setLongitude}
+          setLocationName={setLocationName}
+        /> */}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import "../styles/main.scss";
 import { getWeatherDataOpenMeteo } from "../weatherData/getWeatherFromServerOpenMeteo";
 import { useState } from "react";
 import { ReactElement } from "react";
+import { Header } from "../components/Header";
 import { DayBlocksContainer } from "../components/DayBlocksContainer/DayBlocksContainer";
 import { Settings } from "../components/Settings/Settings";
 import {
@@ -12,6 +13,8 @@ import {
   makeWindSpeed,
   makeWeatherData,
 } from "../weatherData/makeWeatherData";
+import { useWindowSize } from "../hooks/useWindowSize";
+import { CurrentWeatherPhone } from "../components/CurrentWeatherPhone";
 
 interface weatherData {
   daily: {
@@ -21,6 +24,9 @@ interface weatherData {
     windDirection10mDominant: number[];
     weatherCode: number[];
   };
+  current: {
+    temperature2m: number;
+  }
 }
 
 const initialWeatherData = {
@@ -31,6 +37,9 @@ const initialWeatherData = {
     windDirection10mDominant: [0, 0, 0, 0, 0],
     weatherCode: [0, 0, 0, 0, 0],
   },
+  current: {
+    temperature2m: 0,
+  },
 };
 
 function Main(): ReactElement {
@@ -40,14 +49,21 @@ function Main(): ReactElement {
   const [weatherData, setWeatherData] =
     useState<weatherData>(initialWeatherData);
   const [madeTemp, setMadeTemp] = useState<number[]>([]);
+  const [currentTemperature, setCurrentTemperature] = useState(0);
   const [madeWindSpeed, setMadeWindSpeed] = useState<string[]>([]);
   const [madeDates, setMadeDates] = useState<string[]>([]);
   const [madeWindDirection, setMadeWindDirection] = useState<string[]>([]);
   const [madeWeatherCode, setMadeWeatherCode] = useState<number[]>([]);
   const [currentDateObj, setCurrentDateObj] = useState(new Date());
   const [daysOnScreenCount, setDaysOnScreenCount] = useState(5);
+  const [weatherLoadedStatus, setWeatherLoadedStatus] = useState(false);
+  const [width, height] = useWindowSize();
+  const [cookieRefreshed, setCookieRefreshed] = useState<string>(
+    document.cookie
+  );
 
   useEffect(() => {
+    setCurrentTemperature(weatherData.current.temperature2m);
     setMadeTemp(makeTemp(weatherData));
     setMadeWindSpeed(makeWindSpeed(weatherData, daysOnScreenCount));
     setMadeDates(makeDates(currentDateObj, daysOnScreenCount));
@@ -61,33 +77,43 @@ function Main(): ReactElement {
 
   async function getWeatherData(latitude: number, longitude: number) {
     const weather = await getWeatherDataOpenMeteo(latitude, longitude);
-
     setWeatherData(makeWeatherData(weather));
+    setTimeout(() => setWeatherLoadedStatus(true), 0);
   }
 
   return (
     <div className="page">
+      {width <= 1050 ? (
+        <Header
+          setLatitude={setLatitude}
+          setLongitude={setLongitued}
+          setLocationName={setLocationName}
+          cookieRefreshed={cookieRefreshed}
+          setCookieRefreshed={setCookieRefreshed}
+        />
+      ) : null}
       <main className="main">
-        {/* <button className="load-button" onClick={() => getWeatherData(latitude, longitude)}>
-          LOADWEATHER
-        </button> */}
         <div className="center-div">
-          <Settings
+          {width > 1050 ? <Settings
             latitude={latitude}
             longitude={longitude}
             locationName={locationName}
             setLatitude={setLatitude}
             setLongitude={setLongitued}
             setLocationName={setLocationName}
-          />
-          <DayBlocksContainer
-            days={daysOnScreenCount}
-            temp={madeTemp}
-            dates={madeDates}
-            windSpeed={madeWindSpeed}
-            windDirection={madeWindDirection}
-            weatherCode={madeWeatherCode}
-          />
+            cookieRefreshed={cookieRefreshed}
+            setCookieRefreshed={setCookieRefreshed}
+          /> : <CurrentWeatherPhone locationName={locationName} temperature={currentTemperature}/>}
+          {(weatherLoadedStatus && width > 1050) ? (
+            <DayBlocksContainer
+              days={daysOnScreenCount}
+              temp={madeTemp}
+              dates={madeDates}
+              windSpeed={madeWindSpeed}
+              windDirection={madeWindDirection}
+              weatherCode={madeWeatherCode}
+            />
+          ) : null}
         </div>
       </main>
     </div>

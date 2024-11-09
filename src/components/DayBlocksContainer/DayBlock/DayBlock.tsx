@@ -49,7 +49,6 @@ export default function DayBlock(weather: weatherDay): ReactElement {
         <div className="current-temperature-value">{weather.temp}</div>
         <div className="celcius">°c</div>
       </div>
-      {/* <div className="max-min-temperature">19°/7°</div> */}
       <div className="weather-picture">
         <WeatherIcon weatherCode={weather.weatherCode} />
       </div>

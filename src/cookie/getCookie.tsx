@@ -8,7 +8,7 @@ export function getCookie(name: string): returnedValueFromCookie[] {
   const values = document.cookie.split("; ");
   const resultArray: returnedValueFromCookie[] = [];
 
-  if (name === "") {
+  if (name === "" || "moscow".includes(name.toLowerCase())) {
     resultArray.push({
       location: "Moscow",
       latitude: "55.751244",
@@ -31,6 +31,6 @@ export function getCookie(name: string): returnedValueFromCookie[] {
       }
     });
   }
-  
+
   return resultArray;
 }

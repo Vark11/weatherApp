@@ -26,13 +26,13 @@ export async function getWeatherDataOpenMeteo(
     Array.from({ length: (stop - start) / step }, (_, i) => start + i * step);
 
   const response = responses[0];
+  const current = response.current()!;
   const daily = response.daily()!;
 
   const weatherData = {
-    // current: {
-    //   time: new Date((Number(current.time()) + utcOffsetSeconds) * 1000),
-    //   temperature2m: current.variables(0)!.value(),
-    // },
+    current: {
+      temperature2m: current.variables(0)!.value(),
+    },
     daily: {
       // time: range(Number(daily.time()), Number(daily.timeEnd()), daily.interval()).map(
       //   (t) => new Date((t + utcOffsetSeconds) * 1000)
