@@ -2,7 +2,9 @@ import { fetchWeatherApi } from "openmeteo";
 
 export async function getWeatherDataOpenMeteo(
   latitude: number,
-  longitude: number
+  longitude: number,
+  pastDays: number,
+  forecastDays: number
 ) {
   const params = {
     latitude: latitude,
@@ -16,8 +18,8 @@ export async function getWeatherDataOpenMeteo(
       "wind_direction_10m_dominant",
     ],
     timezone: "auto",
-    past_days: 1,
-    forecast_days: 4,
+    past_days: pastDays,
+    forecast_days: forecastDays,
   };
   const url = "https://api.open-meteo.com/v1/forecast";
   const responses = await fetchWeatherApi(url, params);

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ReactElement } from "react";
 import { Header } from "../components/Header";
 import { DayBlocksContainer } from "../components/DayBlocksContainer/DayBlocksContainer";
+import { DayBlocksContainerPhoneResolution } from "../components/DayBlocksContainerPhoneResolution/DayBlocksContainerPhoneResolution";
 import { Settings } from "../components/Settings/Settings";
 import {
   makeTemp,
@@ -26,7 +27,7 @@ interface weatherData {
   };
   current: {
     temperature2m: number;
-  }
+  };
 }
 
 const initialWeatherData = {
@@ -72,11 +73,23 @@ function Main(): ReactElement {
   }, [weatherData, currentDateObj, daysOnScreenCount]);
 
   useEffect(() => {
-    getWeatherData(latitude, longitude);
-  }, [latitude, longitude]);
+    const pastDays = width > 1550 ? 1 : 0;
+    const forecastDays = width > 1550 ? 4 : 5;
+    getWeatherData(latitude, longitude, pastDays, forecastDays);
+  }, [latitude, longitude, width]);
 
-  async function getWeatherData(latitude: number, longitude: number) {
-    const weather = await getWeatherDataOpenMeteo(latitude, longitude);
+  async function getWeatherData(
+    latitude: number,
+    longitude: number,
+    pastDays: number,
+    forecastDays: number
+  ) {
+    const weather = await getWeatherDataOpenMeteo(
+      latitude,
+      longitude,
+      pastDays,
+      forecastDays
+    );
     setWeatherData(makeWeatherData(weather));
     setTimeout(() => setWeatherLoadedStatus(true), 0);
   }
@@ -94,17 +107,26 @@ function Main(): ReactElement {
       ) : null}
       <main className="main">
         <div className="center-div">
-          {width > 1050 ? <Settings
-            latitude={latitude}
-            longitude={longitude}
-            locationName={locationName}
-            setLatitude={setLatitude}
-            setLongitude={setLongitued}
-            setLocationName={setLocationName}
-            cookieRefreshed={cookieRefreshed}
-            setCookieRefreshed={setCookieRefreshed}
-          /> : <CurrentWeatherPhone locationName={locationName} temperature={currentTemperature}/>}
-          {(weatherLoadedStatus && width > 1050) ? (
+          {width > 1050 ? (
+            <Settings
+              latitude={latitude}
+              longitude={longitude}
+              locationName={locationName}
+              setLatitude={setLatitude}
+              setLongitude={setLongitued}
+              setLocationName={setLocationName}
+              cookieRefreshed={cookieRefreshed}
+              setCookieRefreshed={setCookieRefreshed}
+            />
+          ) : weatherLoadedStatus ? (
+            <CurrentWeatherPhone
+              locationName={locationName}
+              temperature={currentTemperature}
+              maxTemp={Number(weatherData.daily.temperature2mMax[0].toFixed(0))}
+              minTemp={Number(weatherData.daily.temperature2mMin[0].toFixed(0))}
+            />
+          ) : null}
+          {weatherLoadedStatus && width > 1050 ? (
             <DayBlocksContainer
               days={daysOnScreenCount}
               temp={madeTemp}
@@ -112,6 +134,17 @@ function Main(): ReactElement {
               windSpeed={madeWindSpeed}
               windDirection={madeWindDirection}
               weatherCode={madeWeatherCode}
+            />
+          ) : weatherLoadedStatus ? (
+            <DayBlocksContainerPhoneResolution
+              days={daysOnScreenCount}
+              temp={madeTemp}
+              dates={madeDates}
+              windSpeed={madeWindSpeed}
+              windDirection={madeWindDirection}
+              weatherCode={madeWeatherCode}
+              maxTemp={weatherData.daily.temperature2mMax}
+              minTemp={weatherData.daily.temperature2mMin}
             />
           ) : null}
         </div>

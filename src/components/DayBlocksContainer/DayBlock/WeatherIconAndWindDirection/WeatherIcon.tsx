@@ -2,14 +2,15 @@ import { ReactElement } from "react";
 
 interface weatherCode {
   weatherCode: number;
+  size: number;
 }
 
-export function WeatherIcon({ weatherCode }: weatherCode): ReactElement {
+export function WeatherIcon({ weatherCode, size }: weatherCode): ReactElement {
   if (weatherCode === 0) {
     return (
       <svg
-        height="80px"
-        width="80px"
+        height={size === 20 ? "30px" : "80px"}
+        width={size === 20 ? "30px" : "80px"}
         version="1.1"
         id="Layer_1"
         xmlns="http://www.w3.org/2000/svg"
@@ -30,8 +31,8 @@ export function WeatherIcon({ weatherCode }: weatherCode): ReactElement {
   } else if (weatherCode === 1 || weatherCode === 2 || weatherCode === 3) {
     return (
       <svg
-        height="80px"
-        width="80px"
+        height={size === 20 ? "30px" : "80px"}
+        width={size === 20 ? "30px" : "80px"}
         version="1.1"
         id="Layer_1"
         xmlns="http://www.w3.org/2000/svg"
@@ -83,8 +84,8 @@ export function WeatherIcon({ weatherCode }: weatherCode): ReactElement {
   ) {
     return (
       <svg
-        height="80px"
-        width="80px"
+        height={size === 20 ? "30px" : "80px"}
+        width={size === 20 ? "30px" : "80px"}
         version="1.1"
         id="Layer_1"
         xmlns="http://www.w3.org/2000/svg"
@@ -159,8 +160,8 @@ export function WeatherIcon({ weatherCode }: weatherCode): ReactElement {
   ) {
     return (
       <svg
-        height="80px"
-        width="80px"
+        height={size === 20 ? "30px" : "80px"}
+        width={size === 20 ? "30px" : "80px"}
         version="1.1"
         id="Layer_1"
         xmlns="http://www.w3.org/2000/svg"
@@ -340,8 +341,8 @@ export function WeatherIcon({ weatherCode }: weatherCode): ReactElement {
   ) {
     return (
       <svg
-        height="80px"
-        width="80px"
+        height={size === 20 ? "30px" : "80px"}
+        width={size === 20 ? "30px" : "80px"}
         version="1.1"
         id="Layer_1"
         xmlns="http://www.w3.org/2000/svg"
@@ -394,8 +395,8 @@ export function WeatherIcon({ weatherCode }: weatherCode): ReactElement {
   } else if (weatherCode === 95 || weatherCode === 96 || weatherCode === 99) {
     return (
       <svg
-        height="80px"
-        width="80px"
+        height={size === 20 ? "30px" : "80px"}
+        width={size === 20 ? "30px" : "80px"}
         version="1.1"
         id="Layer_1"
         xmlns="http://www.w3.org/2000/svg"
@@ -472,8 +473,8 @@ export function WeatherIcon({ weatherCode }: weatherCode): ReactElement {
   }
   return (
     <svg
-      height="80px"
-      width="80px"
+      height={size === 20 ? "30px" : "80px"}
+      width={size === 20 ? "30px" : "80px"}
       version="1.1"
       id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"

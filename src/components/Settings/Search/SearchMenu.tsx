@@ -6,6 +6,7 @@ import {
   SetStateAction,
 } from "react";
 import { getCookie } from "../../../cookie/getCookie";
+import { useWindowSize } from "../../../hooks/useWindowSize";
 
 interface SearchMenuProps {
   inputValue: string;
@@ -31,6 +32,7 @@ interface SearchResultComponentProps {
   setLatitude: Dispatch<SetStateAction<number>>;
   setLongitude: Dispatch<SetStateAction<number>>;
   setLocationName: Dispatch<SetStateAction<string>>;
+  reference: React.RefObject<HTMLInputElement>;
 }
 
 export function SearchMenu({
@@ -51,7 +53,8 @@ export function SearchMenu({
         setCookieRefreshed,
         setLatitude,
         setLongitude,
-        setLocationName
+        setLocationName,
+        reference,
       )
     );
   }, [
@@ -76,7 +79,8 @@ function getSearchResultsComponent(
   setCookieRefreshed: Dispatch<SetStateAction<string>>,
   setLatitude: Dispatch<SetStateAction<number>>,
   setLongitude: Dispatch<SetStateAction<number>>,
-  setLocationName: Dispatch<SetStateAction<string>>
+  setLocationName: Dispatch<SetStateAction<string>>,
+  reference: React.RefObject<HTMLInputElement>,
 ): ReactElement[] {
   const searchResultComponentsArray: ReactElement[] = [];
   const searchResults = getCookie(inputValue);
@@ -105,6 +109,7 @@ function getSearchResultsComponent(
         setLatitude={setLatitude}
         setLongitude={setLongitude}
         setLocationName={setLocationName}
+        reference={reference}
       />
     );
   });
@@ -119,11 +124,17 @@ function SearchResultComponent({
   setLatitude,
   setLongitude,
   setLocationName,
+  reference,
 }: SearchResultComponentProps): ReactElement {
+  const [width, height] = useWindowSize();
+
   function handleLoadLocationClick() {
     setLatitude(Number(Number(elem.latitude).toFixed(6)));
     setLongitude(Number(Number(elem.longitude).toFixed(6)));
     setLocationName(elem.location);
+    if (width <= 1550) {
+      reference.current!.blur();
+    }
   }
 
   return (

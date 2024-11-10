@@ -3,6 +3,7 @@ $main-grey: #333d42;
 $day-block-hovered: #293135;
 $main-border: rgba(255, 255, 255, 0.2);
 $main-font-family: system-ui, -apple-system, "Segoe UI", Roboto;
+$main-font-color: rgb(139, 162, 173);
 
 html {
   background-color: #1a1f21;
@@ -946,8 +947,8 @@ html {
       }
 
       .current-weather-phone {
-        width: 80%;
-        height: 300px;
+        width: calc(80% + 2px);
+        height: max-content;
         background-color: $main-grey;
         border-radius: 20px;
         border: 1px solid $main-border;
@@ -971,7 +972,105 @@ html {
         .current-weather-phone-temperature {
           color: aliceblue;
           font-size: 100px;
+          display: flex;
+          flex-direction: row;
+          padding-left: 25px;
 
+          .current-weather-phone-temperature-celsius-symbol {
+            font-size: 70px;
+            padding-top: 8px;
+          }
+        }
+
+        .current-weather-phone-max-min-temperature {
+          font-size: 25px;
+          padding-bottom: 15px;
+        }
+      }
+
+      .weather-containers-phone {
+        width: 80%;
+        margin-top: 20px;
+        height: max-content;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        border-radius: 20px;
+        background-color: $main-grey;
+        border: 1px solid $main-border;
+        font-family: $main-font-family;
+        font-size: 20px;
+        color: $main-font-color;
+
+        .weather-containers-phone-title {
+          margin-left: 5%;
+          height: 35px;
+          display: flex;
+          align-items: center;
+          justify-content: start;
+          font-size: 15px;
+        }
+
+        .day-block-phone {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          width: 90%;
+          height: 55px;
+          align-items: center;
+          border-top: 1px solid $main-border;
+          margin-left: 5%;
+          margin-right: 5%;
+
+          .day-and-picture-phone-div {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 35%;
+            align-items: center;
+
+            .weather-picture-phone {
+              margin-top: 3px;
+            }
+  
+            .current-day-phone {
+              width: 60px;
+            }
+          }
+          
+
+          .min-max-temperature-phone {
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: center;
+            width: max-content;
+            
+            color: aliceblue;
+
+            .temperature-scale {
+              width: 25vw;
+              margin-left: 10%;
+              margin-right: 10%;
+              background-color: #B6D3EC;
+              border-radius: 20px;
+              height: 4px;
+              position: relative;
+
+              .temperature-scale-day-temperature-highlight {
+                height: 4px;
+                background-color: #2893F1;
+                position: absolute;
+                border-radius: 20px;
+                top: 0;
+              }
+            }
+
+            .min-temperature-phone {
+              
+            }
+          }
         }
       }
     }

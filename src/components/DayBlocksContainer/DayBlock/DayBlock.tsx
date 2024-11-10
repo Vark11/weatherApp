@@ -50,7 +50,7 @@ export default function DayBlock(weather: weatherDay): ReactElement {
         <div className="celcius">°c</div>
       </div>
       <div className="weather-picture">
-        <WeatherIcon weatherCode={weather.weatherCode} />
+        <WeatherIcon weatherCode={weather.weatherCode} size={80} />
       </div>
       <div className="wind">
         <div className="wind-direction">
