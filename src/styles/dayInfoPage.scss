@@ -1,0 +1,39 @@
+$main-black: #121212;
+$main-grey: #333d42;
+$day-block-hovered: #293135;
+$main-border: rgba(255, 255, 255, 0.2);
+$main-font-family: system-ui, -apple-system, "Segoe UI", Roboto;
+$main-font-color: rgb(139, 162, 173);
+
+.back-div {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .main {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding-top: 50px;
+    align-items: center;
+    border-right: 1px solid $main-border;
+    border-left: 1px solid $main-border;
+    background-color: #212529;
+
+    .general-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      width: 700px;
+      height: 300px;
+      background-color: $main-grey;
+      border-radius: 20px;
+      border: 1px solid $main-border;
+    }
+  }
+}

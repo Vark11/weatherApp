@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./styles/index.css";
-import App from "./pages/Main";
+import Main from "./pages/Main";
+import { DayInfoPage } from "./pages/DayInfoPage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -9,6 +11,12 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/main" />}></Route>
+        <Route path="/main" element={<Main />}></Route>
+        <Route path="/day/:latlong" element={<DayInfoPage />}></Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );

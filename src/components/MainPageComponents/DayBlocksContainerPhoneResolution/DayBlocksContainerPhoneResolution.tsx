@@ -10,6 +10,7 @@ interface dayBlockArguments {
   weatherCode: number[];
   minTemp: number[];
   maxTemp: number[];
+  loclatlong: [string, number, number];
 }
 
 const DAYSOFWEEK = [
@@ -38,6 +39,7 @@ export function DayBlocksContainerPhoneResolution({
   weatherCode,
   minTemp,
   maxTemp,
+  loclatlong,
 }: dayBlockArguments): ReactElement {
   const dayBlocksArray: ReactElement[] = [];
 
@@ -46,7 +48,13 @@ export function DayBlocksContainerPhoneResolution({
       <DayBlocksPhoneResolution
         key={i}
         temp={temp[i]}
-        day={i < 1 ? "Today" : DAYSOFWEEK[new Date().getDay() + i - 1]}
+        day={
+          i <= 1
+            ? i === 1
+              ? "Today"
+              : DAYSOFWEEK[new Date().getDay() + i - 1]
+            : DAYSOFWEEK[new Date().getDay() + i - 1]
+        }
         date={dates[i]}
         windSpeed={windSpeed[i]}
         windDirection={windDirection[i]}
@@ -54,8 +62,9 @@ export function DayBlocksContainerPhoneResolution({
         index={i === 0 || i === days - 1 ? (i === 0 ? 0 : -1) : i === 1 ? 2 : 1}
         minTemp={Number(minTemp[i].toFixed(0))}
         maxTemp={Number(maxTemp[i].toFixed(0))}
-        minTemp5Days={Math.min(...minTemp)}
-        maxTemp5Days={Math.max(...maxTemp)}
+        minTemp5Days={Number(Math.min(...minTemp).toFixed(0))}
+        maxTemp5Days={Number(Math.max(...maxTemp).toFixed(0))}
+        loclatlong={loclatlong}
       />
     );
   }

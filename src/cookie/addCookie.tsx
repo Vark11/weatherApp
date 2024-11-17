@@ -7,6 +7,12 @@ interface AddCookieProps {
   setCookieRefreshed: Dispatch<SetStateAction<string>>;
 }
 
+interface AddCookieCurrentLocationProps {
+  location: string;
+  latitude: string;
+  longitude: string;
+}
+
 export function addCookie(props: AddCookieProps) {
   if (
     document.cookie
@@ -29,6 +35,23 @@ export function addCookie(props: AddCookieProps) {
       props.long!.current!.value +
       "; max-age=604800";
     props.setCookieRefreshed(document.cookie);
+  } catch (err) {
+    return err;
+  }
+
+  return "success";
+}
+
+export function addCookieCurrentLocation(props: AddCookieCurrentLocationProps) {
+  try {
+    document.cookie =
+      "currentLocation=" +
+      props.location +
+      "<>" +
+      props.latitude +
+      "<>" +
+      props.longitude +
+      "; max-age=604800";
   } catch (err) {
     return err;
   }

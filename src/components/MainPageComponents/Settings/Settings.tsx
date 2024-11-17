@@ -16,7 +16,7 @@ interface SettingsProps {
 }
 
 export function Settings(props: SettingsProps): ReactElement {
-  const [width, height] = useWindowSize();
+  const [width] = useWindowSize();
 
 
   return (

@@ -49,3 +49,7 @@ export async function getWeatherDataOpenMeteo(
 
   return weatherData;
 }
+
+export async function getOneDayWeatherDataOpenMeteo(latitude: string, longitude: string) {
+  
+}

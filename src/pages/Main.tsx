@@ -1,12 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState, ReactElement } from "react";
 import "../styles/main.scss";
 import { getWeatherDataOpenMeteo } from "../weatherData/getWeatherFromServerOpenMeteo";
-import { useState } from "react";
-import { ReactElement } from "react";
-import { Header } from "../components/Header";
-import { DayBlocksContainer } from "../components/DayBlocksContainer/DayBlocksContainer";
-import { DayBlocksContainerPhoneResolution } from "../components/DayBlocksContainerPhoneResolution/DayBlocksContainerPhoneResolution";
-import { Settings } from "../components/Settings/Settings";
+import { AddLocationPhoneResolution } from "../components/MainPageComponents/Settings/AddLocationPhoneResolution";
+import { Header } from "../components/MainPageComponents/Header";
+import { DayBlocksContainer } from "../components/MainPageComponents/DayBlocksContainer/DayBlocksContainer";
+import { DayBlocksContainerPhoneResolution } from "../components/MainPageComponents/DayBlocksContainerPhoneResolution/DayBlocksContainerPhoneResolution";
+import { Settings } from "../components/MainPageComponents/Settings/Settings";
 import {
   makeTemp,
   makeDates,
@@ -15,7 +14,7 @@ import {
   makeWeatherData,
 } from "../weatherData/makeWeatherData";
 import { useWindowSize } from "../hooks/useWindowSize";
-import { CurrentWeatherPhone } from "../components/CurrentWeatherPhone";
+import { CurrentWeatherPhone } from "../components/MainPageComponents/CurrentWeatherPhone";
 
 interface weatherData {
   daily: {
@@ -44,9 +43,46 @@ const initialWeatherData = {
 };
 
 function Main(): ReactElement {
-  const [latitude, setLatitude] = useState<number>(55.751244);
-  const [longitude, setLongitued] = useState<number>(37.618423);
-  const [locationName, setLocationName] = useState<string>("Moscow");
+  const [latitude, setLatitude] = useState<number>(
+    ("; " + document.cookie)
+      .split(`; currentLocation=`)
+      .pop()!
+      .split(";")[0] !== ""
+      ? Number(
+          ("; " + document.cookie)
+            .split(`; currentLocation=`)
+            .pop()!
+            .split(";")[0]
+            .split("<>")[1]
+        )
+      : 55.751244
+  );
+  const [longitude, setLongitued] = useState<number>(
+    ("; " + document.cookie)
+      .split(`; currentLocation=`)
+      .pop()!
+      .split(";")[0] !== ""
+      ? Number(
+          ("; " + document.cookie)
+            .split(`; currentLocation=`)
+            .pop()!
+            .split(";")[0]
+            .split("<>")[2]
+        )
+      : 37.618423
+  );
+  const [locationName, setLocationName] = useState<string>(
+    ("; " + document.cookie)
+      .split(`; currentLocation=`)
+      .pop()!
+      .split(";")[0] !== ""
+      ? ("; " + document.cookie)
+          .split(`; currentLocation=`)
+          .pop()!
+          .split(";")[0]
+          .split("<>")[0]
+      : "Moscow"
+  );
   const [weatherData, setWeatherData] =
     useState<weatherData>(initialWeatherData);
   const [madeTemp, setMadeTemp] = useState<number[]>([]);
@@ -58,7 +94,7 @@ function Main(): ReactElement {
   const [currentDateObj, setCurrentDateObj] = useState(new Date());
   const [daysOnScreenCount, setDaysOnScreenCount] = useState(5);
   const [weatherLoadedStatus, setWeatherLoadedStatus] = useState(false);
-  const [width, height] = useWindowSize();
+  const [width] = useWindowSize();
   const [cookieRefreshed, setCookieRefreshed] = useState<string>(
     document.cookie
   );
@@ -70,11 +106,12 @@ function Main(): ReactElement {
     setMadeDates(makeDates(currentDateObj, daysOnScreenCount));
     setMadeWindDirection(makeWindDirection(weatherData, daysOnScreenCount));
     setMadeWeatherCode(weatherData.daily.weatherCode);
-  }, [weatherData, currentDateObj, daysOnScreenCount]);
+  }, [weatherData, currentDateObj, daysOnScreenCount, width]);
 
   useEffect(() => {
-    const pastDays = width > 1550 ? 1 : 0;
-    const forecastDays = width > 1550 ? 4 : 5;
+    const pastDays = 1;
+    const forecastDays = 4;
+    setWeatherLoadedStatus(false);
     getWeatherData(latitude, longitude, pastDays, forecastDays);
   }, [latitude, longitude, width]);
 
@@ -122,8 +159,8 @@ function Main(): ReactElement {
             <CurrentWeatherPhone
               locationName={locationName}
               temperature={currentTemperature}
-              maxTemp={Number(weatherData.daily.temperature2mMax[0].toFixed(0))}
-              minTemp={Number(weatherData.daily.temperature2mMin[0].toFixed(0))}
+              maxTemp={Number(weatherData.daily.temperature2mMax[1].toFixed(0))}
+              minTemp={Number(weatherData.daily.temperature2mMin[1].toFixed(0))}
             />
           ) : null}
           {weatherLoadedStatus && width > 1050 ? (
@@ -134,6 +171,7 @@ function Main(): ReactElement {
               windSpeed={madeWindSpeed}
               windDirection={madeWindDirection}
               weatherCode={madeWeatherCode}
+              loclatlong={[locationName, latitude, longitude]}
             />
           ) : weatherLoadedStatus ? (
             <DayBlocksContainerPhoneResolution
@@ -145,6 +183,12 @@ function Main(): ReactElement {
               weatherCode={madeWeatherCode}
               maxTemp={weatherData.daily.temperature2mMax}
               minTemp={weatherData.daily.temperature2mMin}
+              loclatlong={[locationName, latitude, longitude]}
+            />
+          ) : null}
+          {weatherLoadedStatus && width <= 1050 ? (
+            <AddLocationPhoneResolution
+              setCookieRefreshed={setCookieRefreshed}
             />
           ) : null}
         </div>

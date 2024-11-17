@@ -7,6 +7,7 @@ import {
 } from "react";
 import { getCookie } from "../../../cookie/getCookie";
 import { useWindowSize } from "../../../hooks/useWindowSize";
+import { addCookieCurrentLocation } from "../../../cookie/addCookie";
 
 interface SearchMenuProps {
   inputValue: string;
@@ -129,6 +130,7 @@ function SearchResultComponent({
   const [width, height] = useWindowSize();
 
   function handleLoadLocationClick() {
+    addCookieCurrentLocation({location: elem.location, latitude: Number(elem.latitude).toFixed(6), longitude: Number(elem.longitude).toFixed(6)})
     setLatitude(Number(Number(elem.latitude).toFixed(6)));
     setLongitude(Number(Number(elem.longitude).toFixed(6)));
     setLocationName(elem.location);
@@ -160,7 +162,7 @@ function SearchResultComponent({
           longitude: {elem.longitude}
         </div>
       </div>
-      {index !== 0 ? (
+      {index > 3 ? (
         <div
           className="search-menu-array-elem-delete-div"
           onMouseDown={(e) => {

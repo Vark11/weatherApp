@@ -1,13 +1,15 @@
 import { ReactElement } from "react";
 import DayBlock from "./DayBlock/DayBlock";
+import { useWindowSize } from "../../../hooks/useWindowSize";
 
-interface dayBlockArguments {
+interface dayBlockProps {
   days: number;
   temp: number[];
   dates: string[];
   windSpeed: string[];
   windDirection: string[];
   weatherCode: number[];
+  loclatlong: [string, number, number];
 }
 
 const DAYSOFWEEK = [
@@ -34,10 +36,20 @@ export function DayBlocksContainer({
   windSpeed,
   windDirection,
   weatherCode,
-}: dayBlockArguments): ReactElement {
+  loclatlong,
+}: dayBlockProps): ReactElement {
   const dayBlocksArray: ReactElement[] = [];
-
-  for (let i = 0; i < days; i++) {
+  const [width] = useWindowSize();
+  let daysCount: number;
+  let i: number;
+  if (width > 1050 && width <= 1550) {
+    i = 1;
+    daysCount = 4;
+  } else {
+    i = 0;
+    daysCount = 5;
+  }
+  for (i; i < daysCount; i++) {
     dayBlocksArray.push(
       <DayBlock
         key={i}
@@ -53,7 +65,18 @@ export function DayBlocksContainer({
         windSpeed={windSpeed[i]}
         windDirection={windDirection[i]}
         weatherCode={weatherCode[i]}
-        index={i === 0 || i === days - 1 ? (i === 0 ? 0 : -1) : i === 1 ? 2 : 1}
+        loclatlong={loclatlong}
+        index={
+          width > 1050 && width <= 1550
+            ? 3
+            : i === 0 || i === days - 1
+            ? i === 0
+              ? 0
+              : -1
+            : i === 1
+            ? 2
+            : 1
+        }
       />
     );
   }

@@ -1,8 +1,9 @@
-import { ReactElement } from "react";
+import { MouseEventHandler, ReactElement } from "react";
 import { WeatherIcon } from "./WeatherIconAndWindDirection/WeatherIcon";
 import { WindDirection } from "./WeatherIconAndWindDirection/WindDirection";
 import { useEffect } from "react";
 import CSS from "csstype";
+import { useNavigate } from "react-router-dom";
 
 interface weatherDay {
   temp: number;
@@ -12,6 +13,7 @@ interface weatherDay {
   windDirection: string;
   weatherCode: number;
   index: number;
+  loclatlong: [string, number, number];
 }
 
 const styledDayBlockFirst: CSS.Properties = {
@@ -25,14 +27,24 @@ const styledDayBlockLast: CSS.Properties = {
 const styledTodayBlock: CSS.Properties = {
   backgroundColor: "#475055",
 };
+const styled3Block: CSS.Properties = {
+  borderRadius: "20px",
+}
 
 export default function DayBlock(weather: weatherDay): ReactElement {
+  const navigator = useNavigate();
+
   useEffect(() => changeBackgroundDayBlock(weather), [weather]);
+
+  function handleDayBlockClick() {
+    navigator(`/day/latitude=${weather.loclatlong[1]}&longitude=${weather.loclatlong[2]}&date=${weather.date}&location=${weather.loclatlong[0]}`);
+  }
 
   return (
     <div
       className="day-block"
       style={
+        weather.index !== 3 ?
         weather.index !== 1
           ? weather.index === -1
             ? styledDayBlockLast
@@ -40,8 +52,10 @@ export default function DayBlock(weather: weatherDay): ReactElement {
             ? styledDayBlockFirst
             : styledTodayBlock
           : undefined
+        : styled3Block
       }
       id={"dayBlock" + weather.date}
+      onClick={handleDayBlockClick}
     >
       <div className="current-day">{weather.day}</div>
       <div className="current-date">{weather.date}</div>
@@ -74,12 +88,12 @@ function changeBackgroundDayBlock(weather: weatherDay): void {
     dayBlock.addEventListener("mouseout", () => {
       if (
         dayBlock.id ===
-        "dayBlock" + (new Date().getMonth() + 1) + "." + new Date().getDate()
+        "dayBlock" + (new Date().getMonth() + 1) + "." + new Date().getDate() && weather.index !== 3
       ) {
         dayBlock.style.backgroundColor = "#475055";
       } else if (
         dayBlock.id ===
-        "dayBlock" + (new Date().getMonth() + 1) + ".0" + new Date().getDate()
+        "dayBlock" + (new Date().getMonth() + 1) + ".0" + new Date().getDate() && weather.index !== 3
       ) {
         dayBlock.style.backgroundColor = "#475055";
       } else {

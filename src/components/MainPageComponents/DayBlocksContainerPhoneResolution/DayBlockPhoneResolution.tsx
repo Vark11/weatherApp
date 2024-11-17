@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import { WeatherIcon } from "../DayBlocksContainer/DayBlock/WeatherIconAndWindDirection/WeatherIcon";
+import { useNavigate } from "react-router-dom";
 
 interface weatherDay {
   temp: number;
@@ -13,6 +14,7 @@ interface weatherDay {
   maxTemp: number;
   minTemp5Days: number;
   maxTemp5Days: number;
+  loclatlong: [string, number, number];
 }
 
 interface TemperatureScaleProps {
@@ -25,8 +27,20 @@ interface TemperatureScaleProps {
 export default function DayBlocksPhoneResolution(
   weather: weatherDay
 ): ReactElement {
+  const navigator = useNavigate();
+
+  function handleDayBlockClick() {
+    navigator(
+      `/day/latitude=${weather.loclatlong[1]}&longitude=${weather.loclatlong[2]}&date=${weather.date}&location=${weather.loclatlong[0]}`
+    );
+  }
+
   return (
-    <div className="day-block-phone" id={"dayBlock" + weather.date}>
+    <div
+      className="day-block-phone"
+      id={"dayBlock" + weather.date}
+      onClick={handleDayBlockClick}
+    >
       <div className="day-and-picture-phone-div">
         <div className="current-day-phone">{weather.day}</div>
         <div className="weather-picture-phone">
@@ -54,21 +68,20 @@ function TemperatureScale({
   minTemp,
   maxTemp,
 }: TemperatureScaleProps): ReactElement {
+  console.log(maxTemp5Days, minTemp5Days, maxTemp, minTemp);
   return (
     <div className="temperature-scale">
       <div
         className="temperature-scale-day-temperature-highlight"
         style={{
-          width: `${
-            Math.round(
-              Number(
-                (
-                  ((maxTemp - minTemp) / (maxTemp5Days - minTemp5Days)) *
-                  10
-                ).toFixed(0)
-              )
-            ) * 10
-          }%`,
+          width: `${Math.round(
+            Number(
+              (
+                ((maxTemp - minTemp) / (maxTemp5Days - minTemp5Days)) *
+                100
+              ).toFixed(0)
+            )
+          )}%`,
           left: `${
             Math.round(
               Number(
