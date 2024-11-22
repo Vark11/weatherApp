@@ -15,7 +15,7 @@ export function CurrentWeatherPhone(
       <div className="current-weather-phone-title">Current location</div>
       <div className="current-weather-phone-location">{props.locationName}</div>
       <div className="current-weather-phone-temperature">
-        {props.temperature.toFixed(0)}
+        {Number(props.temperature.toFixed(0))}
         <div className="current-weather-phone-temperature-celsius-symbol">
           °
         </div>
