@@ -38,7 +38,7 @@ $main-font-color: rgb(139, 162, 173);
 
       @media all and (max-width: 1160px) {
         flex-direction: column;
-        align-items: center;;  
+        align-items: center;
       }
 
       .general-info {
@@ -53,7 +53,7 @@ $main-font-color: rgb(139, 162, 173);
         background-color: $main-grey;
         border-radius: 20px;
         border: 1px solid $main-border;
-        
+
         @media all and (max-width: 1160px) {
           width: 340px;
         }
@@ -65,7 +65,7 @@ $main-font-color: rgb(139, 162, 173);
           line-height: 70px;
           padding-left: 32px;
         }
-  
+
         .latitude-and-longitude {
           display: flex;
           flex-direction: row;
@@ -79,19 +79,19 @@ $main-font-color: rgb(139, 162, 173);
           border-bottom: 1px solid $main-border;
           padding-bottom: 10px;
           padding-left: 35px;
-  
+
           .latitude {
             width: max-content;
             height: max-content;
           }
-  
+
           .longitude {
             padding-left: 15px;
             width: max-content;
             height: max-content;
           }
         }
-  
+
         .full-date {
           padding-top: 15px;
           padding-left: 35px;
@@ -107,42 +107,42 @@ $main-font-color: rgb(139, 162, 173);
             padding-left: 25px;
           }
         }
-  
+
         .sunrise {
           padding-top: 25px;
           display: flex;
           flex-direction: row;
           justify-content: center;
           align-items: center;
-          
+
           .sunrise-text {
             color: $main-font-color;
             font-size: 20px;
             padding-left: 10px;
           }
         }
-  
+
         .sunset {
           padding-top: 20px;
           display: flex;
           flex-direction: row;
           justify-content: center;
           align-items: center;
-  
+
           .sunset-text {
             color: $main-font-color;
             font-size: 20px;
             padding-left: 10px;
           }
         }
-  
+
         .weather-icon-and-text {
           display: flex;
           flex-direction: row;
           justify-content: start;
           align-items: center;
           width: 100%;
-  
+
           .weather-icon {
             margin-left: 60px;
             margin-top: 20px;
@@ -152,7 +152,7 @@ $main-font-color: rgb(139, 162, 173);
               margin-top: 10px;
             }
           }
-  
+
           .weather-text {
             margin-left: 40px;
             font-size: 28px;
@@ -160,9 +160,8 @@ $main-font-color: rgb(139, 162, 173);
             color: $main-font-color;
           }
         }
-        
       }
-  
+
       .wind-and-pressure-positioning-div {
         display: flex;
         flex-direction: column;
@@ -181,7 +180,7 @@ $main-font-color: rgb(139, 162, 173);
           width: 340px;
           height: 170px;
           margin-left: 20px;
-          
+
           @media all and (max-width: 1160px) {
             margin-left: 0px;
           }
@@ -191,14 +190,14 @@ $main-font-color: rgb(139, 162, 173);
             position: absolute;
             left: 61%;
             height: 100%;
-  
+
             .wind-direction-svg-sircle-svg {
               position: absolute;
               top: 21%;
               transform-origin: 50% 50%;
             }
           }
-    
+
           .wind-direction-north {
             position: absolute;
             font-size: 20px;
@@ -206,7 +205,7 @@ $main-font-color: rgb(139, 162, 173);
             left: 253px;
             top: 8px;
           }
-    
+
           .wind-direction-west {
             position: absolute;
             font-size: 20px;
@@ -214,7 +213,7 @@ $main-font-color: rgb(139, 162, 173);
             left: 184px;
             top: 68px;
           }
-    
+
           .wind-direction-south {
             position: absolute;
             font-size: 20px;
@@ -222,7 +221,7 @@ $main-font-color: rgb(139, 162, 173);
             left: 253px;
             top: 128px;
           }
-    
+
           .wind-direction-east {
             position: absolute;
             font-size: 20px;
@@ -230,7 +229,7 @@ $main-font-color: rgb(139, 162, 173);
             left: 314px;
             top: 68px;
           }
-    
+
           .wind-direction-info {
             display: flex;
             flex-direction: column;
@@ -240,7 +239,7 @@ $main-font-color: rgb(139, 162, 173);
             height: 100%;
             width: 50%;
             border-right: 1px solid $main-border;
-  
+
             .wind-direction-direction {
               width: 100%;
               height: max-content;
@@ -249,18 +248,18 @@ $main-font-color: rgb(139, 162, 173);
               padding-left: 20px;
               border-bottom: 1px solid $main-border;
               padding-bottom: 7px;
-  
+
               .wind-direction-direction-title {
                 color: $main-font-color;
                 font-size: 17px;
                 line-height: 20px;
               }
-  
+
               .wind-direction-direction {
                 color: $main-font-color;
                 font-size: 17px;
               }
-  
+
               .wind-direction-value {
                 color: $main-font-color;
                 font-size: 20px;
@@ -268,8 +267,7 @@ $main-font-color: rgb(139, 162, 173);
                 font-weight: 300;
               }
             }
-            
-      
+
             .wind-direction-speed {
               width: 100%;
               height: max-content;
@@ -277,21 +275,20 @@ $main-font-color: rgb(139, 162, 173);
               box-sizing: border-box;
               padding-left: 20px;
               padding-bottom: 5px;
-  
+
               .wind-direction-speed-title {
                 color: $main-font-color;
                 font-size: 17px;
               }
-  
+
               .wind-direction-speed-value {
                 color: $main-font-color;
                 font-size: 20px;
                 padding-left: 10px;
                 font-weight: 300;
               }
-  
             }
-    
+
             .wind-direction-title {
               width: 100%;
               top: 3px;
@@ -304,9 +301,8 @@ $main-font-color: rgb(139, 162, 173);
               border-bottom: 1px solid $main-border;
             }
           }
-          
         }
-    
+
         .pressure-div {
           display: flex;
           flex-direction: column;
@@ -320,12 +316,12 @@ $main-font-color: rgb(139, 162, 173);
           height: 117px;
           margin-left: 20px;
           margin-top: 10px;
-          
+
           @media all and (max-width: 1160px) {
             margin-left: 0px;
             margin-bottom: 10px;
           }
-  
+
           .pressure-value {
             padding-left: 20px;
             display: flex;
@@ -335,7 +331,7 @@ $main-font-color: rgb(139, 162, 173);
             align-items: center;
             border-bottom: 1px solid $main-border;
             padding-bottom: 2px;
-  
+
             .pressure-value-value {
               padding-left: 20px;
               display: flex;
@@ -345,14 +341,14 @@ $main-font-color: rgb(139, 162, 173);
               color: $main-font-color;
             }
           }
-  
+
           .precipitation-probability {
             height: 50%;
             padding-left: 26px;
             display: flex;
             flex-direction: row;
             align-items: center;
-  
+
             .precipitation-probability-value {
               padding-left: 20px;
               display: flex;
@@ -364,13 +360,13 @@ $main-font-color: rgb(139, 162, 173);
           }
         }
       }
-  
+
       .sun-and-temp-positioning-div {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-  
+
         .sun {
           width: 340px;
           height: 117px;
@@ -385,7 +381,7 @@ $main-font-color: rgb(139, 162, 173);
             margin-top: 10px;
             margin-bottom: 10px;
           }
-  
+
           .sunrise {
             height: 50%;
             width: 100%;
@@ -396,27 +392,26 @@ $main-font-color: rgb(139, 162, 173);
             box-sizing: border-box;
             border-bottom: 1px solid $main-border;
             padding-left: 15px;
-  
+
             .svg-sunrise-div {
               height: 100%;
               display: flex;
               justify-content: center;
               align-items: center;
               padding-right: 10px;
-  
             }
-  
+
             .sunrise-text {
               padding-left: 10px;
               display: flex;
               flex-direction: row;
               align-items: center;
-  
+
               .sunrise-title {
                 font-size: 20px;
                 font-weight: 400;
               }
-  
+
               .no-info {
                 margin-left: 35px;
                 font-size: 20px;
@@ -424,7 +419,7 @@ $main-font-color: rgb(139, 162, 173);
               }
             }
           }
-  
+
           .sunset {
             height: 50%;
             width: 100%;
@@ -433,37 +428,35 @@ $main-font-color: rgb(139, 162, 173);
             justify-content: start;
             align-items: center;
             padding-left: 15px;
-  
+
             .svg-sunset-div {
               height: 100%;
               display: flex;
               justify-content: center;
               align-items: center;
               padding-right: 10px;
-  
             }
-  
+
             .sunset-text {
               padding-left: 10px;
               display: flex;
               flex-direction: row;
               align-items: center;
-  
+
               .sunset-title {
                 font-size: 20px;
                 font-weight: 400;
               }
-  
+
               .no-info {
                 margin-left: 39px;
                 font-size: 20px;
                 font-weight: 400;
               }
             }
-            
           }
         }
-  
+
         .temperature-info {
           width: 340px;
           height: 170px;
@@ -477,7 +470,7 @@ $main-font-color: rgb(139, 162, 173);
           justify-content: start;
           align-items: center;
           font-family: $main-font-family;
-          
+
           @media all and (max-width: 1160px) {
             margin-left: 0px;
           }
@@ -494,7 +487,7 @@ $main-font-color: rgb(139, 162, 173);
             align-items: center;
             padding-bottom: 8px;
           }
-  
+
           .min-max-temp {
             display: flex;
             flex-direction: row;
@@ -502,7 +495,7 @@ $main-font-color: rgb(139, 162, 173);
             align-items: start;
             width: 100%;
             height: 100%;
-  
+
             .min-temp {
               display: flex;
               flex-direction: column;
@@ -511,20 +504,19 @@ $main-font-color: rgb(139, 162, 173);
               width: 50%;
               height: 100%;
               border-right: 1px solid $main-border;
-    
+
               .min-temp-text {
                 color: $main-font-color;
                 font-size: 30px;
                 height: max-content;
-                
               }
-              
+
               .min-temp-temp {
                 display: flex;
                 flex-direction: row;
                 justify-content: start;
                 align-items: start;
-  
+
                 .min-temp-value {
                   user-select: none;
                   font-optical-sizing: auto;
@@ -534,7 +526,7 @@ $main-font-color: rgb(139, 162, 173);
                   font-size: 80px;
                   line-height: 85px;
                 }
-                
+
                 .min-temp-celcius {
                   font-size: 45px;
                   font-weight: 400;
@@ -542,10 +534,8 @@ $main-font-color: rgb(139, 162, 173);
                   padding-top: 5px;
                 }
               }
-  
-              
             }
-    
+
             .max-temp {
               display: flex;
               flex-direction: column;
@@ -554,29 +544,29 @@ $main-font-color: rgb(139, 162, 173);
               width: 50%;
               height: 100%;
               box-sizing: border-box;
-    
+
               .max-temp-text {
                 color: $main-font-color;
                 font-size: 30px;
                 height: max-content;
               }
-              
+
               .max-temp-temp {
                 display: flex;
                 flex-direction: row;
                 justify-content: start;
                 align-items: start;
-  
+
                 .max-temp-value {
                   user-select: none;
                   font-optical-sizing: auto;
                   font-weight: 300;
                   color: $main-font-color;
                   font-style: normal;
-                  font-size: 80px;  
-                  line-height: 85px;         
+                  font-size: 80px;
+                  line-height: 85px;
                 }
-                
+
                 .max-temp-celcius {
                   font-size: 45px;
                   font-weight: 400;
@@ -584,16 +574,11 @@ $main-font-color: rgb(139, 162, 173);
                   padding-top: 5px;
                 }
               }
-              
             }
           }
-          
-          
         }
       }
     }
-
-    
 
     .chart-temperature {
       display: flex;

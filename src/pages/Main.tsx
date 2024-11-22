@@ -44,34 +44,8 @@ const initialWeatherData = {
 };
 
 function Main(): ReactElement {
-  const [latitude, setLatitude] = useState<number>(
-    ("; " + document.cookie)
-      .split(`; currentLocation=`)
-      .pop()!
-      .split(";")[0] !== ""
-      ? Number(
-          ("; " + document.cookie)
-            .split(`; currentLocation=`)
-            .pop()!
-            .split(";")[0]
-            .split("<>")[1]
-        )
-      : 55.751244
-  );
-  const [longitude, setLongitued] = useState<number>(
-    ("; " + document.cookie)
-      .split(`; currentLocation=`)
-      .pop()!
-      .split(";")[0] !== ""
-      ? Number(
-          ("; " + document.cookie)
-            .split(`; currentLocation=`)
-            .pop()!
-            .split(";")[0]
-            .split("<>")[2]
-        )
-      : 37.618423
-  );
+  const [latitude, setLatitude] = useState<number>(initialLatitude());
+  const [longitude, setLongitued] = useState<number>(initialLongitude());
   const [locationName, setLocationName] = useState<string>(
     ("; " + document.cookie)
       .split(`; currentLocation=`)
@@ -135,7 +109,7 @@ function Main(): ReactElement {
     } else {
       setErrorLoadData(true);
     }
-    
+
     setTimeout(() => setWeatherLoadedStatus(true), 0);
   }
 
@@ -207,3 +181,33 @@ function Main(): ReactElement {
 }
 
 export default Main;
+
+function initialLatitude(): number {
+  return ("; " + document.cookie)
+    .split(`; currentLocation=`)
+    .pop()!
+    .split(";")[0] !== ""
+    ? Number(
+        ("; " + document.cookie)
+          .split(`; currentLocation=`)
+          .pop()!
+          .split(";")[0]
+          .split("<>")[1]
+      )
+    : 55.751244;
+}
+
+function initialLongitude(): number {
+  return ("; " + document.cookie)
+    .split(`; currentLocation=`)
+    .pop()!
+    .split(";")[0] !== ""
+    ? Number(
+        ("; " + document.cookie)
+          .split(`; currentLocation=`)
+          .pop()!
+          .split(";")[0]
+          .split("<>")[2]
+      )
+    : 37.618423;
+}

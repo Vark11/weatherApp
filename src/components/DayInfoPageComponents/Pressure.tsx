@@ -28,10 +28,8 @@ function PressureValue({
     <div className="pressure-value">
       <PressureIcon />
       <div className="pressure-value-value">
-        Pressure: 
-        <div style={{paddingLeft: "40px"}}>
-          {pressureValue}hPa
-        </div>
+        Pressure:
+        <div style={{ paddingLeft: "40px" }}>{pressureValue}hPa</div>
       </div>
     </div>
   );
@@ -47,9 +45,7 @@ function PrecipitationProbability({
       <PrecipitationIcon />
       <div className="precipitation-probability-value">
         Precipitation:
-        <div style={{paddingLeft: "20px"}}>
-          {precipitationProbability}%
-        </div>
+        <div style={{ paddingLeft: "20px" }}>{precipitationProbability}%</div>
       </div>
     </div>
   );

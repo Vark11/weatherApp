@@ -1,4 +1,4 @@
-import { ReactElement, useState, Dispatch, SetStateAction, useEffect } from "react";
+import { ReactElement, Dispatch, SetStateAction } from "react";
 import { Search } from "./Settings/Search/Search";
 
 interface HeaderProps {
@@ -10,7 +10,6 @@ interface HeaderProps {
 }
 
 export function Header(props: HeaderProps): ReactElement {
-
   return (
     <header className="header">
       <Search

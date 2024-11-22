@@ -27,7 +27,7 @@ html {
   align-items: center;
   box-sizing: border-box;
 
-  @media all and (max-width: 1780px) {  
+  @media all and (max-width: 1780px) {
     width: 100%;
     max-width: 100%;
     border: none;
@@ -73,7 +73,7 @@ html {
       }
 
       @media all and (max-width: 1050px) {
-        border: none; 
+        border: none;
       }
 
       .search-menu {
@@ -179,7 +179,6 @@ html {
                 top: 3px;
                 left: 80%;
               }
-              
             }
           }
         }
@@ -299,7 +298,7 @@ html {
       @media all and (max-width: 1550px) {
         align-items: center;
       }
-      
+
       @media all and (max-width: 1050px) {
         width: 100%;
       }
@@ -500,8 +499,6 @@ html {
               border-radius: 20px;
               width: 50px;
               height: 35px;
-
-              
 
               &:hover {
                 background-color: #70777b;
@@ -1045,12 +1042,11 @@ html {
             .weather-picture-phone {
               margin-top: 3px;
             }
-  
+
             .current-day-phone {
               width: 60px;
             }
           }
-          
 
           .min-max-temperature-phone {
             display: flex;
@@ -1058,21 +1054,21 @@ html {
             justify-content: start;
             align-items: center;
             width: max-content;
-            
+
             color: aliceblue;
 
             .temperature-scale {
               width: 25vw;
               margin-left: 10%;
               margin-right: 10%;
-              background-color: #B6D3EC;
+              background-color: #b6d3ec;
               border-radius: 20px;
               height: 4px;
               position: relative;
 
               .temperature-scale-day-temperature-highlight {
                 height: 4px;
-                background-color: #2893F1;
+                background-color: #2893f1;
                 position: absolute;
                 border-radius: 20px;
                 top: 0;

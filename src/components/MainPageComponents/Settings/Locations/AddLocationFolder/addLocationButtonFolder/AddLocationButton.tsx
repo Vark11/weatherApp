@@ -19,9 +19,19 @@ export function AddLocationButton(props: AddLocationButtonProps): ReactElement {
   }
 
   return (
-    <div className={width > 1050 ? "add-location-button-div-positioning" : "add-location-phone-resolution-button-positioning-div"}>
+    <div
+      className={
+        width > 1050
+          ? "add-location-button-div-positioning"
+          : "add-location-phone-resolution-button-positioning-div"
+      }
+    >
       <div
-        className={width > 1050 ? "add-location-button-div" : "add-location-phone-resolution-button-div"}
+        className={
+          width > 1050
+            ? "add-location-button-div"
+            : "add-location-phone-resolution-button-div"
+        }
         onClick={handleAddLocationDivClick}
       >
         <span>
@@ -36,7 +46,15 @@ export function AddLocationButton(props: AddLocationButtonProps): ReactElement {
             <path d="M19 9.375h-8.375V1h-1.25v8.375H1v1.25h8.375V19h1.25v-8.375H19v-1.25Z"></path>
           </svg>
         </span>
-        <button className={width > 1050 ? "add-location-button" : "add-location-phone-resolution-button-button"}>Add</button>
+        <button
+          className={
+            width > 1050
+              ? "add-location-button"
+              : "add-location-phone-resolution-button-button"
+          }
+        >
+          Add
+        </button>
       </div>
       {locationAdded ? (
         <div

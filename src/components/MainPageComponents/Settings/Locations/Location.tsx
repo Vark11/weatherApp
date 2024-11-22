@@ -1,4 +1,4 @@
-import { ReactElement, ChangeEvent, useState } from "react";
+import { ReactElement, ChangeEvent } from "react";
 
 interface LocationT {
   location: string;

@@ -88,13 +88,14 @@ export default function DayInfoPage(): ReactElement {
       } else {
         setErrorLoadData(true);
       }
-      
 
       const madeTemp = () => {
         const madeT: number[] = [];
-        weather.hourly.temperature2m.forEach(elem => madeT.push(Number(elem.toFixed(0))))
+        weather.hourly.temperature2m.forEach((elem) =>
+          madeT.push(Number(elem.toFixed(0)))
+        );
         return madeT;
-      }
+      };
 
       setTemp24Hours(madeTemp);
       setTimeout(() => {
@@ -145,7 +146,9 @@ export default function DayInfoPage(): ReactElement {
             ) : null}
           </div>
         </div>
-        {dataLoaded && width >= 1160 && !errorLoadData ? <ChartTemperature data={temp24Hours}/> : null}
+        {dataLoaded && width >= 1160 && !errorLoadData ? (
+          <ChartTemperature data={temp24Hours} />
+        ) : null}
         {errorLoadData ? <LoadErrorElement /> : null}
       </main>
     </div>

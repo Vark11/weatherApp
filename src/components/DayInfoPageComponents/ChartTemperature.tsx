@@ -1,6 +1,6 @@
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement } from "react";
 import { Line } from "react-chartjs-2";
-import 'chart.js/auto';
+import "chart.js/auto";
 
 const HOURS = [
   "00:00",
@@ -31,55 +31,54 @@ const HOURS = [
 
 interface ChartTemparatureProps {
   data: number[];
-} 
+}
 
-export function ChartTemperature({ data }: ChartTemparatureProps): ReactElement {
-
+export function ChartTemperature({
+  data,
+}: ChartTemparatureProps): ReactElement {
   return (
-    <div className='chart-temperature'>
-      <ChartTemp data={data}/>
+    <div className="chart-temperature">
+      <ChartTemp data={data} />
     </div>
   );
 }
 
 function ChartTemp({ data }: ChartTemparatureProps): ReactElement {
-
   return (
-    <div className='chart-temperature-chart'>
+    <div className="chart-temperature-chart">
       <Line
         data={{
           labels: HOURS,
-          datasets: [{
-            data: data,
-            label: "temperature",
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            backgroundColor: 'rgb(255, 255, 255)',
-            tension: 0.1,
-            
-          }],
-          
+          datasets: [
+            {
+              data: data,
+              label: "temperature",
+              fill: false,
+              borderColor: "rgb(75, 192, 192)",
+              backgroundColor: "rgb(255, 255, 255)",
+              tension: 0.1,
+            },
+          ],
         }}
         options={{
           plugins: {
             legend: {
-              display: false
+              display: false,
             },
-            
           },
           scales: {
             x: {
               ticks: {
-                color: "aliceblue"
-              }
+                color: "aliceblue",
+              },
             },
             y: {
               ticks: {
-                color: "aliceblue"
-              }
-            }
-          }
-        }}        
+                color: "aliceblue",
+              },
+            },
+          },
+        }}
       />
     </div>
   );

@@ -26,7 +26,7 @@ interface weatherDataFromOneDay {
   hourly: {
     temperature2m: number[];
     surfacePressure: number[];
-  }
+  };
 }
 
 interface weatherBeforeMadeIt {
@@ -39,7 +39,7 @@ interface weatherBeforeMadeIt {
   };
   current: {
     temperature2m: number;
-  }
+  };
 }
 
 interface weatherBeforeMadeItFromOneDay {
@@ -53,11 +53,11 @@ interface weatherBeforeMadeItFromOneDay {
   };
   current: {
     temperature2m: number;
-  }
+  };
   hourly: {
     temperature2m: Float32Array;
     surfacePressure: Float32Array;
-  }
+  };
 }
 
 export function makeTemp(weatherData: weatherData): number[] {
@@ -75,16 +75,14 @@ export function makeTemp(weatherData: weatherData): number[] {
         )
       );
     }
-    
   }
 
   return madeTemp;
 }
 
 export function makeWeatherData(weather: weatherBeforeMadeIt): weatherData {
-  
   return {
-    current: {temperature2m: weather.current.temperature2m},
+    current: { temperature2m: weather.current.temperature2m },
     daily: {
       temperature2mMax: [
         weather.daily.temperature2mMax[0],
@@ -129,9 +127,11 @@ export function makeWeatherData(weather: weatherBeforeMadeIt): weatherData {
   };
 }
 
-export function makeWeatherDataFromOneDay(weather: weatherBeforeMadeItFromOneDay): weatherDataFromOneDay {
+export function makeWeatherDataFromOneDay(
+  weather: weatherBeforeMadeItFromOneDay
+): weatherDataFromOneDay {
   return {
-    current: {temperature2m: weather.current.temperature2m},
+    current: { temperature2m: weather.current.temperature2m },
     daily: {
       temperature2mMax: [
         weather.daily.temperature2mMax[0],
@@ -175,7 +175,7 @@ export function makeWeatherDataFromOneDay(weather: weatherBeforeMadeItFromOneDay
 
       precipitationProbabilityMax: [
         weather.daily.precipitationProbabilityMax[0],
-      ]
+      ],
     },
     hourly: {
       temperature2m: [
@@ -191,8 +191,8 @@ export function makeWeatherDataFromOneDay(weather: weatherBeforeMadeItFromOneDay
         weather.hourly.surfacePressure[2],
         weather.hourly.surfacePressure[3],
         weather.hourly.surfacePressure[4],
-      ]
-    }
+      ],
+    },
   };
 }
 
@@ -233,9 +233,7 @@ export function makeWindSpeed(
   return madeWindSpeed;
 }
 
-export function makeWindDirection(
-  weatherData: weatherData,
-): string[] {
+export function makeWindDirection(weatherData: weatherData): string[] {
   const madeWindDirection: string[] = [];
 
   for (let i = 0; i < weatherData.daily.windDirection10mDominant.length; i++) {

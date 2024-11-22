@@ -55,7 +55,7 @@ export function SearchMenu({
         setLatitude,
         setLongitude,
         setLocationName,
-        reference,
+        reference
       )
     );
   }, [
@@ -81,7 +81,7 @@ function getSearchResultsComponent(
   setLatitude: Dispatch<SetStateAction<number>>,
   setLongitude: Dispatch<SetStateAction<number>>,
   setLocationName: Dispatch<SetStateAction<string>>,
-  reference: React.RefObject<HTMLInputElement>,
+  reference: React.RefObject<HTMLInputElement>
 ): ReactElement[] {
   const searchResultComponentsArray: ReactElement[] = [];
   const searchResults = getCookie(inputValue);
@@ -130,7 +130,11 @@ function SearchResultComponent({
   const [width, height] = useWindowSize();
 
   function handleLoadLocationClick() {
-    addCookieCurrentLocation({location: elem.location, latitude: Number(elem.latitude).toFixed(6), longitude: Number(elem.longitude).toFixed(6)})
+    addCookieCurrentLocation({
+      location: elem.location,
+      latitude: Number(elem.latitude).toFixed(6),
+      longitude: Number(elem.longitude).toFixed(6),
+    });
     setLatitude(Number(Number(elem.latitude).toFixed(6)));
     setLongitude(Number(Number(elem.longitude).toFixed(6)));
     setLocationName(elem.location);

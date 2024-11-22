@@ -69,8 +69,10 @@ export function DayBlocksContainerPhoneResolution({
     );
   }
 
-  return <div className="weather-containers-phone">
-    <div className="weather-containers-phone-title">FORECAST 5 DAYS</div>
-    {dayBlocksArray}
-    </div>;
+  return (
+    <div className="weather-containers-phone">
+      <div className="weather-containers-phone-title">FORECAST 5 DAYS</div>
+      {dayBlocksArray}
+    </div>
+  );
 }

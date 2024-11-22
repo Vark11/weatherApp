@@ -24,8 +24,22 @@ export function LatAndLong(latAndLongProps: LatAndLongProps): ReactElement {
   }
 
   return (
-    <div className={width > 1050 ? "lat-and-long" : "add-location-phone-resolution-lat-and-long"}>
-      <label className={width > 1050 ? "lat-and-long-label" : "add-location-phone-resolution-lat-and-long-label"}>{latAndLongProps.latOrLong}</label>
+    <div
+      className={
+        width > 1050
+          ? "lat-and-long"
+          : "add-location-phone-resolution-lat-and-long"
+      }
+    >
+      <label
+        className={
+          width > 1050
+            ? "lat-and-long-label"
+            : "add-location-phone-resolution-lat-and-long-label"
+        }
+      >
+        {latAndLongProps.latOrLong}
+      </label>
       {latAndLongProps.disabled ? (
         <InputLatAndLongDisabled
           latOrLong={
@@ -39,7 +53,13 @@ export function LatAndLong(latAndLongProps: LatAndLongProps): ReactElement {
         />
       )}
       {showError ? (
-        <div className={width > 1050 ? "lat-long-error" : "add-location-phone-resolution-lat-and-long-error"}>
+        <div
+          className={
+            width > 1050
+              ? "lat-long-error"
+              : "add-location-phone-resolution-lat-and-long-error"
+          }
+        >
           {latAndLongProps.latOrLong === "Latitude"
             ? "must be between -90 and 90"
             : "must be between -180 and 180"}
@@ -71,7 +91,11 @@ function InputLatAndLong({
       type="number"
       step="0.001"
       maxLength={9}
-      className={width > 1050 ? "lat-and-long-input" : "add-location-phone-resolution-lat-and-long-input"}
+      className={
+        width > 1050
+          ? "lat-and-long-input"
+          : "add-location-phone-resolution-lat-and-long-input"
+      }
       disabled={false}
       onChange={handleLatAndLongInputChange}
       placeholder="..."
