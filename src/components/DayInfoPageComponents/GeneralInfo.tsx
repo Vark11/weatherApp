@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { WeatherIcon } from "../MainPageComponents/DayBlocksContainer/DayBlock/WeatherIconAndWindDirection/WeatherIcon";
 
 const DAYSOFWEEK = [
@@ -35,6 +35,15 @@ interface GeneralInfoProps {
 }
 
 export function GeneralInfo(props: GeneralInfoProps): ReactElement {
+  const [dayDate, setDayDate] = useState<Date>(new Date());
+
+  useEffect(() => {
+    setDayDate(new Date(dayDate.setDate(Number(props.date.split(".")[1]))));
+    setDayDate(
+      new Date(dayDate.setMonth(Number(props.date.split(".")[0]) - 1))
+    );
+  }, [props]);
+
   return (
     <div className="general-info">
       <div className="location-name">{props.locationName}</div>
@@ -43,8 +52,8 @@ export function GeneralInfo(props: GeneralInfoProps): ReactElement {
         <div className="longitude">Longitude: {props.longitude}</div>
       </div>
       <div className="full-date">
-        {DAYSOFWEEK[new Date().getDay()]}, {props.date.split(".")[1]}{" "}
-        {MONTHSNAMES[new Date().getMonth()]} {new Date().getFullYear()}
+        {DAYSOFWEEK[dayDate.getDay()]}, {dayDate.getDate()}{" "}
+        {MONTHSNAMES[dayDate.getMonth()]} {dayDate.getFullYear()}
       </div>
       <div className="weather-icon-and-text">
         <div className="weather-icon">
