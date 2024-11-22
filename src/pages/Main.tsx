@@ -15,6 +15,7 @@ import {
 } from "../weatherData/makeWeatherData";
 import { useWindowSize } from "../hooks/useWindowSize";
 import { CurrentWeatherPhone } from "../components/MainPageComponents/CurrentWeatherPhone";
+import { LoadErrorElement } from "../components/LoadErrorComponent";
 
 interface weatherData {
   daily: {
@@ -98,13 +99,14 @@ function Main(): ReactElement {
   const [cookieRefreshed, setCookieRefreshed] = useState<string>(
     document.cookie
   );
+  const [errorLoadData, setErrorLoadData] = useState(false);
 
   useEffect(() => {
     setCurrentTemperature(weatherData.current.temperature2m);
     setMadeTemp(makeTemp(weatherData));
     setMadeWindSpeed(makeWindSpeed(weatherData, daysOnScreenCount));
     setMadeDates(makeDates(currentDateObj, daysOnScreenCount));
-    setMadeWindDirection(makeWindDirection(weatherData, daysOnScreenCount));
+    setMadeWindDirection(makeWindDirection(weatherData));
     setMadeWeatherCode(weatherData.daily.weatherCode);
   }, [weatherData, currentDateObj, daysOnScreenCount, width]);
 
@@ -127,7 +129,13 @@ function Main(): ReactElement {
       pastDays,
       forecastDays
     );
-    setWeatherData(makeWeatherData(weather));
+    if (weather instanceof Object) {
+      setWeatherData(makeWeatherData(weather));
+      setErrorLoadData(false);
+    } else {
+      setErrorLoadData(true);
+    }
+    
     setTimeout(() => setWeatherLoadedStatus(true), 0);
   }
 
@@ -144,7 +152,7 @@ function Main(): ReactElement {
       ) : null}
       <main className="main">
         <div className="center-div">
-          {width > 1050 ? (
+          {width > 1050 && !errorLoadData ? (
             <Settings
               latitude={latitude}
               longitude={longitude}
@@ -155,7 +163,7 @@ function Main(): ReactElement {
               cookieRefreshed={cookieRefreshed}
               setCookieRefreshed={setCookieRefreshed}
             />
-          ) : weatherLoadedStatus ? (
+          ) : weatherLoadedStatus && !errorLoadData ? (
             <CurrentWeatherPhone
               locationName={locationName}
               temperature={currentTemperature}
@@ -163,7 +171,7 @@ function Main(): ReactElement {
               minTemp={Number(weatherData.daily.temperature2mMin[1].toFixed(0))}
             />
           ) : null}
-          {weatherLoadedStatus && width > 1050 ? (
+          {weatherLoadedStatus && width > 1050 && !errorLoadData ? (
             <DayBlocksContainer
               days={daysOnScreenCount}
               temp={madeTemp}
@@ -173,7 +181,7 @@ function Main(): ReactElement {
               weatherCode={madeWeatherCode}
               loclatlong={[locationName, latitude, longitude]}
             />
-          ) : weatherLoadedStatus ? (
+          ) : weatherLoadedStatus && !errorLoadData ? (
             <DayBlocksContainerPhoneResolution
               days={daysOnScreenCount}
               temp={madeTemp}
@@ -186,11 +194,12 @@ function Main(): ReactElement {
               loclatlong={[locationName, latitude, longitude]}
             />
           ) : null}
-          {weatherLoadedStatus && width <= 1050 ? (
+          {weatherLoadedStatus && width <= 1050 && !errorLoadData ? (
             <AddLocationPhoneResolution
               setCookieRefreshed={setCookieRefreshed}
             />
           ) : null}
+          {errorLoadData ? <LoadErrorElement /> : null}
         </div>
       </main>
     </div>

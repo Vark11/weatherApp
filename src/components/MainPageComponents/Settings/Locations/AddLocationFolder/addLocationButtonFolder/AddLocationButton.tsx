@@ -1,6 +1,6 @@
 import { ReactElement, SetStateAction, Dispatch, useState } from "react";
-import { addCookie } from "../../../../../cookie/addCookie";
-import { useWindowSize } from "../../../../../hooks/useWindowSize";
+import { addCookie } from "../../../../../../cookie/addCookie";
+import { useWindowSize } from "../../../../../../hooks/useWindowSize";
 
 interface AddLocationButtonProps {
   lat: React.RefObject<HTMLInputElement> | null;

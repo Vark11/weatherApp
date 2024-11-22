@@ -49,7 +49,9 @@ export function DayBlocksContainer({
     i = 0;
     daysCount = 5;
   }
+  
   for (i; i < daysCount; i++) {
+
     dayBlocksArray.push(
       <DayBlock
         key={i}

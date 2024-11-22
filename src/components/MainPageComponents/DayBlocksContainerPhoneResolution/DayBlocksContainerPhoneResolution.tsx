@@ -52,7 +52,7 @@ export function DayBlocksContainerPhoneResolution({
           i <= 1
             ? i === 1
               ? "Today"
-              : DAYSOFWEEK[new Date().getDay() + i - 1]
+              : DAYSOFWEEK[new Date().getDay()]
             : DAYSOFWEEK[new Date().getDay() + i - 1]
         }
         date={dates[i]}

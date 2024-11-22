@@ -11,6 +11,24 @@ interface weatherData {
   };
 }
 
+interface weatherDataFromOneDay {
+  daily: {
+    temperature2mMax: number[];
+    temperature2mMin: number[];
+    windSpeed10mMax: number[];
+    windDirection10mDominant: number[];
+    weatherCode: number[];
+    precipitationProbabilityMax: number[];
+  };
+  current: {
+    temperature2m: number;
+  };
+  hourly: {
+    temperature2m: number[];
+    surfacePressure: number[];
+  }
+}
+
 interface weatherBeforeMadeIt {
   daily: {
     temperature2mMax: Float32Array;
@@ -21,6 +39,24 @@ interface weatherBeforeMadeIt {
   };
   current: {
     temperature2m: number;
+  }
+}
+
+interface weatherBeforeMadeItFromOneDay {
+  daily: {
+    temperature2mMax: Float32Array;
+    temperature2mMin: Float32Array;
+    windSpeed10mMax: Float32Array;
+    windDirection10mDominant: Float32Array;
+    weatherCode: Float32Array;
+    precipitationProbabilityMax: Float32Array;
+  };
+  current: {
+    temperature2m: number;
+  }
+  hourly: {
+    temperature2m: Float32Array;
+    surfacePressure: Float32Array;
   }
 }
 
@@ -46,6 +82,7 @@ export function makeTemp(weatherData: weatherData): number[] {
 }
 
 export function makeWeatherData(weather: weatherBeforeMadeIt): weatherData {
+  
   return {
     current: {temperature2m: weather.current.temperature2m},
     daily: {
@@ -92,6 +129,73 @@ export function makeWeatherData(weather: weatherBeforeMadeIt): weatherData {
   };
 }
 
+export function makeWeatherDataFromOneDay(weather: weatherBeforeMadeItFromOneDay): weatherDataFromOneDay {
+  return {
+    current: {temperature2m: weather.current.temperature2m},
+    daily: {
+      temperature2mMax: [
+        weather.daily.temperature2mMax[0],
+        weather.daily.temperature2mMax[1],
+        weather.daily.temperature2mMax[2],
+        weather.daily.temperature2mMax[3],
+        weather.daily.temperature2mMax[4],
+      ],
+
+      temperature2mMin: [
+        weather.daily.temperature2mMin[0],
+        weather.daily.temperature2mMin[1],
+        weather.daily.temperature2mMin[2],
+        weather.daily.temperature2mMin[3],
+        weather.daily.temperature2mMin[4],
+      ],
+
+      windSpeed10mMax: [
+        weather.daily.windSpeed10mMax[0],
+        weather.daily.windSpeed10mMax[1],
+        weather.daily.windSpeed10mMax[2],
+        weather.daily.windSpeed10mMax[3],
+        weather.daily.windSpeed10mMax[4],
+      ],
+
+      windDirection10mDominant: [
+        weather.daily.windDirection10mDominant[0],
+        weather.daily.windDirection10mDominant[1],
+        weather.daily.windDirection10mDominant[2],
+        weather.daily.windDirection10mDominant[3],
+        weather.daily.windDirection10mDominant[4],
+      ],
+
+      weatherCode: [
+        weather.daily.weatherCode[0],
+        weather.daily.weatherCode[1],
+        weather.daily.weatherCode[2],
+        weather.daily.weatherCode[3],
+        weather.daily.weatherCode[4],
+      ],
+
+      precipitationProbabilityMax: [
+        weather.daily.precipitationProbabilityMax[0],
+      ]
+    },
+    hourly: {
+      temperature2m: [
+        weather.hourly.temperature2m[0],
+        weather.hourly.temperature2m[1],
+        weather.hourly.temperature2m[2],
+        weather.hourly.temperature2m[3],
+        weather.hourly.temperature2m[4],
+      ],
+      surfacePressure: [
+        weather.hourly.surfacePressure[0],
+        weather.hourly.surfacePressure[1],
+        weather.hourly.surfacePressure[2],
+        weather.hourly.surfacePressure[3],
+        weather.hourly.surfacePressure[4],
+      ]
+    }
+  };
+}
+
 export function makeDates(currentDate: Date, days: number): string[] {
   const dates: string[] = [];
   const newDate = new Date(currentDate);
@@ -131,11 +235,10 @@ export function makeWindSpeed(
 
 export function makeWindDirection(
   weatherData: weatherData,
-  days: number
 ): string[] {
   const madeWindDirection: string[] = [];
 
-  for (let i = 0; i < days; i++) {
+  for (let i = 0; i < weatherData.daily.windDirection10mDominant.length; i++) {
     if (weatherData.daily.windDirection10mDominant[i] <= 22.5) {
       madeWindDirection.push("east");
     } else if (weatherData.daily.windDirection10mDominant[i] <= 67.5) {

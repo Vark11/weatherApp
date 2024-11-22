@@ -5,7 +5,7 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
-import { useShowInputCleaner } from "../../../hooks/useShowInputCleaner";
+import { useShowInputCleaner } from "../../../../hooks/useShowInputCleaner";
 import { ChangeEvent, FocusEvent } from "react";
 import { InputCleaner } from "./InputCleaner";
 import { SearchMenu } from "./SearchMenu";

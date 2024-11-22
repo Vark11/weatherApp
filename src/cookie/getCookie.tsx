@@ -8,7 +8,7 @@ export function getCookie(name: string): returnedValueFromCookie[] {
   const values = document.cookie.split("; ");
   values.unshift('Ufa=54.7431<>55.9678');
   values.unshift('Sochi=43.59917<>39.72569');
-  values.unshift('Saint-Petersburg=59.93863<>30.31413');
+  values.unshift('Saint-Pete=59.93863<>30.31413');
   values.unshift("Moscow=55.751244<>37.618423");
   const resultArray: returnedValueFromCookie[] = [];
 

@@ -11,29 +11,612 @@ $main-font-color: rgb(139, 162, 173);
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 
   .main {
-    width: 50%;
-    height: 100%;
+    width: 70%;
+    min-width: 1345.3px;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none;
+    overflow-y: scroll;
+    height: calc(100% - 20px);
     display: flex;
     flex-direction: column;
     justify-content: start;
-    padding-top: 50px;
+    padding-top: 20px;
     align-items: center;
     border-right: 1px solid $main-border;
     border-left: 1px solid $main-border;
     background-color: #212529;
+    font-family: $main-font-family;
 
-    .general-info {
+    .day-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      align-items: start;
+
+      @media all and (max-width: 1160px) {
+        flex-direction: column;
+        align-items: center;;  
+      }
+
+      .general-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        box-sizing: border-box;
+        width: max-content;
+        height: 300px;
+        width: 435px;
+        background-color: $main-grey;
+        border-radius: 20px;
+        border: 1px solid $main-border;
+        
+        @media all and (max-width: 1160px) {
+          width: 340px;
+        }
+
+        .location-name {
+          width: max-content;
+          height: max-content;
+          font-size: 62px;
+          line-height: 70px;
+          padding-left: 32px;
+        }
+  
+        .latitude-and-longitude {
+          display: flex;
+          flex-direction: row;
+          justify-content: start;
+          align-items: center;
+          color: $main-font-color;
+          font-size: 17px;
+          width: 100%;
+          margin-top: 8px;
+          box-sizing: border-box;
+          border-bottom: 1px solid $main-border;
+          padding-bottom: 10px;
+          padding-left: 35px;
+  
+          .latitude {
+            width: max-content;
+            height: max-content;
+          }
+  
+          .longitude {
+            padding-left: 15px;
+            width: max-content;
+            height: max-content;
+          }
+        }
+  
+        .full-date {
+          padding-top: 15px;
+          padding-left: 35px;
+          padding-bottom: 15px;
+          width: 100%;
+          box-sizing: border-box;
+          border-bottom: 1px solid $main-border;
+          height: max-content;
+          color: $main-font-color;
+          font-size: 22px;
+
+          @media all and (max-width: 1160px) {
+            padding-left: 25px;
+          }
+        }
+  
+        .sunrise {
+          padding-top: 25px;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          
+          .sunrise-text {
+            color: $main-font-color;
+            font-size: 20px;
+            padding-left: 10px;
+          }
+        }
+  
+        .sunset {
+          padding-top: 20px;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+  
+          .sunset-text {
+            color: $main-font-color;
+            font-size: 20px;
+            padding-left: 10px;
+          }
+        }
+  
+        .weather-icon-and-text {
+          display: flex;
+          flex-direction: row;
+          justify-content: start;
+          align-items: center;
+          width: 100%;
+  
+          .weather-icon {
+            margin-left: 60px;
+            margin-top: 20px;
+
+            @media all and (max-width: 1160px) {
+              margin-left: 30px;
+              margin-top: 10px;
+            }
+          }
+  
+          .weather-text {
+            margin-left: 40px;
+            font-size: 28px;
+            font-family: cursive;
+            color: $main-font-color;
+          }
+        }
+        
+      }
+  
+      .wind-and-pressure-positioning-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        .wind-direction-div {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          background-color: $main-grey;
+          border: 1px solid $main-border;
+          position: relative;
+          border-radius: 20px;
+          width: 340px;
+          height: 170px;
+          margin-left: 20px;
+          
+          @media all and (max-width: 1160px) {
+            margin-left: 0px;
+          }
+
+          .wind-direction-sircle-div {
+            padding-left: 4px;
+            position: absolute;
+            left: 61%;
+            height: 100%;
+  
+            .wind-direction-svg-sircle-svg {
+              position: absolute;
+              top: 21%;
+              transform-origin: 50% 50%;
+            }
+          }
+    
+          .wind-direction-north {
+            position: absolute;
+            font-size: 20px;
+            font-weight: 500;
+            left: 253px;
+            top: 8px;
+          }
+    
+          .wind-direction-west {
+            position: absolute;
+            font-size: 20px;
+            font-weight: 500;
+            left: 184px;
+            top: 68px;
+          }
+    
+          .wind-direction-south {
+            position: absolute;
+            font-size: 20px;
+            font-weight: 500;
+            left: 253px;
+            top: 128px;
+          }
+    
+          .wind-direction-east {
+            position: absolute;
+            font-size: 20px;
+            font-weight: 500;
+            left: 314px;
+            top: 68px;
+          }
+    
+          .wind-direction-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            position: relative;
+            height: 100%;
+            width: 50%;
+            border-right: 1px solid $main-border;
+  
+            .wind-direction-direction {
+              width: 100%;
+              height: max-content;
+              margin-top: 7px;
+              box-sizing: border-box;
+              padding-left: 20px;
+              border-bottom: 1px solid $main-border;
+              padding-bottom: 7px;
+  
+              .wind-direction-direction-title {
+                color: $main-font-color;
+                font-size: 17px;
+                line-height: 20px;
+              }
+  
+              .wind-direction-direction {
+                color: $main-font-color;
+                font-size: 17px;
+              }
+  
+              .wind-direction-value {
+                color: $main-font-color;
+                font-size: 20px;
+                padding-left: 10px;
+                font-weight: 300;
+              }
+            }
+            
+      
+            .wind-direction-speed {
+              width: 100%;
+              height: max-content;
+              margin-top: 5px;
+              box-sizing: border-box;
+              padding-left: 20px;
+              padding-bottom: 5px;
+  
+              .wind-direction-speed-title {
+                color: $main-font-color;
+                font-size: 17px;
+              }
+  
+              .wind-direction-speed-value {
+                color: $main-font-color;
+                font-size: 20px;
+                padding-left: 10px;
+                font-weight: 300;
+              }
+  
+            }
+    
+            .wind-direction-title {
+              width: 100%;
+              top: 3px;
+              color: $main-font-color;
+              box-sizing: border-box;
+              text-align: center;
+              font-size: 34px;
+              font-weight: 400;
+              padding-bottom: 2px;
+              border-bottom: 1px solid $main-border;
+            }
+          }
+          
+        }
+    
+        .pressure-div {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: start;
+          background-color: $main-grey;
+          border: 1px solid $main-border;
+          position: relative;
+          border-radius: 20px;
+          width: 340px;
+          height: 117px;
+          margin-left: 20px;
+          margin-top: 10px;
+          
+          @media all and (max-width: 1160px) {
+            margin-left: 0px;
+            margin-bottom: 10px;
+          }
+  
+          .pressure-value {
+            padding-left: 20px;
+            display: flex;
+            height: 50%;
+            width: calc(100% - 20px);
+            flex-direction: row;
+            align-items: center;
+            border-bottom: 1px solid $main-border;
+            padding-bottom: 2px;
+  
+            .pressure-value-value {
+              padding-left: 20px;
+              display: flex;
+              flex-direction: row;
+              font-family: $main-font-family;
+              font-size: 20px;
+              color: $main-font-color;
+            }
+          }
+  
+          .precipitation-probability {
+            height: 50%;
+            padding-left: 26px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+  
+            .precipitation-probability-value {
+              padding-left: 20px;
+              display: flex;
+              flex-direction: row;
+              font-family: $main-font-family;
+              font-size: 20px;
+              color: $main-font-color;
+            }
+          }
+        }
+      }
+  
+      .sun-and-temp-positioning-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+  
+        .sun {
+          width: 340px;
+          height: 117px;
+          background-color: $main-grey;
+          border-radius: 20px;
+          border: 1px solid $main-border;
+          margin-left: 20px;
+          color: $main-font-color;
+
+          @media all and (max-width: 1160px) {
+            margin-left: 0px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+          }
+  
+          .sunrise {
+            height: 50%;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: center;
+            box-sizing: border-box;
+            border-bottom: 1px solid $main-border;
+            padding-left: 15px;
+  
+            .svg-sunrise-div {
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding-right: 10px;
+  
+            }
+  
+            .sunrise-text {
+              padding-left: 10px;
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+  
+              .sunrise-title {
+                font-size: 20px;
+                font-weight: 400;
+              }
+  
+              .no-info {
+                margin-left: 35px;
+                font-size: 20px;
+                font-weight: 400;
+              }
+            }
+          }
+  
+          .sunset {
+            height: 50%;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: center;
+            padding-left: 15px;
+  
+            .svg-sunset-div {
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding-right: 10px;
+  
+            }
+  
+            .sunset-text {
+              padding-left: 10px;
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+  
+              .sunset-title {
+                font-size: 20px;
+                font-weight: 400;
+              }
+  
+              .no-info {
+                margin-left: 39px;
+                font-size: 20px;
+                font-weight: 400;
+              }
+            }
+            
+          }
+        }
+  
+        .temperature-info {
+          width: 340px;
+          height: 170px;
+          background-color: $main-grey;
+          border-radius: 20px;
+          border: 1px solid $main-border;
+          margin-left: 20px;
+          margin-top: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: start;
+          align-items: center;
+          font-family: $main-font-family;
+          
+          @media all and (max-width: 1160px) {
+            margin-left: 0px;
+          }
+
+          .temperature-info-title {
+            font-size: 25px;
+            color: $main-font-color;
+            margin-top: 1px;
+            width: 100%;
+            border-bottom: 1px solid $main-border;
+            height: max-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 8px;
+          }
+  
+          .min-max-temp {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: start;
+            width: 100%;
+            height: 100%;
+  
+            .min-temp {
+              display: flex;
+              flex-direction: column;
+              justify-content: start;
+              align-items: center;
+              width: 50%;
+              height: 100%;
+              border-right: 1px solid $main-border;
+    
+              .min-temp-text {
+                color: $main-font-color;
+                font-size: 30px;
+                height: max-content;
+                
+              }
+              
+              .min-temp-temp {
+                display: flex;
+                flex-direction: row;
+                justify-content: start;
+                align-items: start;
+  
+                .min-temp-value {
+                  user-select: none;
+                  font-optical-sizing: auto;
+                  font-weight: 300;
+                  color: $main-font-color;
+                  font-style: normal;
+                  font-size: 80px;
+                  line-height: 85px;
+                }
+                
+                .min-temp-celcius {
+                  font-size: 45px;
+                  font-weight: 400;
+                  color: $main-font-color;
+                  padding-top: 5px;
+                }
+              }
+  
+              
+            }
+    
+            .max-temp {
+              display: flex;
+              flex-direction: column;
+              justify-content: start;
+              align-items: center;
+              width: 50%;
+              height: 100%;
+              box-sizing: border-box;
+    
+              .max-temp-text {
+                color: $main-font-color;
+                font-size: 30px;
+                height: max-content;
+              }
+              
+              .max-temp-temp {
+                display: flex;
+                flex-direction: row;
+                justify-content: start;
+                align-items: start;
+  
+                .max-temp-value {
+                  user-select: none;
+                  font-optical-sizing: auto;
+                  font-weight: 300;
+                  color: $main-font-color;
+                  font-style: normal;
+                  font-size: 80px;  
+                  line-height: 85px;         
+                }
+                
+                .max-temp-celcius {
+                  font-size: 45px;
+                  font-weight: 400;
+                  color: $main-font-color;
+                  padding-top: 5px;
+                }
+              }
+              
+            }
+          }
+          
+          
+        }
+      }
+    }
+
+    
+
+    .chart-temperature {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      width: 700px;
-      height: 300px;
+      box-sizing: border-box;
+      height: 550px;
+      width: 1159px;
       background-color: $main-grey;
       border-radius: 20px;
       border: 1px solid $main-border;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      color: aliceblue;
+
+      .chart-temperature-chart {
+        width: 1000px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        height: 500px;
+        color: aliceblue;
+      }
     }
   }
 }

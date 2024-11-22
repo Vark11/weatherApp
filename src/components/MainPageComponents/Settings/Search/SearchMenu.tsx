@@ -5,9 +5,9 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
-import { getCookie } from "../../../cookie/getCookie";
-import { useWindowSize } from "../../../hooks/useWindowSize";
-import { addCookieCurrentLocation } from "../../../cookie/addCookie";
+import { getCookie } from "../../../../cookie/getCookie";
+import { useWindowSize } from "../../../../hooks/useWindowSize";
+import { addCookieCurrentLocation } from "../../../../cookie/addCookie";
 
 interface SearchMenuProps {
   inputValue: string;

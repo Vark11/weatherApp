@@ -68,7 +68,7 @@ function TemperatureScale({
   minTemp,
   maxTemp,
 }: TemperatureScaleProps): ReactElement {
-  console.log(maxTemp5Days, minTemp5Days, maxTemp, minTemp);
+  
   return (
     <div className="temperature-scale">
       <div

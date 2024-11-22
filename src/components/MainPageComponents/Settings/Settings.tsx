@@ -2,7 +2,7 @@ import { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import { CurrentLocation } from "./Locations/CurrentLocationFolder/CurrentLocation";
 import { AddLocation } from "./Locations/AddLocationFolder/AddLocation";
 import { Search } from "./Search/Search";
-import { useWindowSize } from "../../hooks/useWindowSize";
+import { useWindowSize } from "../../../hooks/useWindowSize";
 
 interface SettingsProps {
   latitude: number;

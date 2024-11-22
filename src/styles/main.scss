@@ -20,8 +20,7 @@ html {
   position: absolute;
   border-left: 1px solid $main-border;
   border-right: 1px solid $main-border;
-  
-  padding-top: 65px;
+  padding-top: 25px;
   flex-direction: column;
   justify-content: center;
   overflow-x: hidden;
@@ -1034,6 +1033,7 @@ html {
           border-top: 1px solid $main-border;
           margin-left: 5%;
           margin-right: 5%;
+          cursor: pointer;
 
           .day-and-picture-phone-div {
             display: flex;
@@ -1277,6 +1277,11 @@ html {
             }
           }
         }
+      }
+
+      .laod-error-component {
+        color: aliceblue;
+        font-size: 40px;
       }
     }
   }
