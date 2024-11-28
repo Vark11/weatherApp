@@ -24,10 +24,11 @@ export async function getWeatherDataOpenMeteo(
   let dateB = new Date();
   dateB.setDate(dateB.getDate() - 1);
   const madeDate1 =
-    dateB.getFullYear() + "-" + month[dateB.getMonth()] + "-" + dateB.getDate();
+    dateB.getFullYear() + "-" + month[dateB.getMonth()] + "-" + (dateB.getDate().toString.length === 2 ? dateB.getDate() : '0' + dateB.getDate());
   dateB.setDate(dateB.getDate() + 4);
   const madeDate2 =
-    dateB.getFullYear() + "-" + month[dateB.getMonth()] + "-" + dateB.getDate();
+    dateB.getFullYear() + "-" + month[dateB.getMonth()] + "-" + (dateB.getDate().toString.length === 2 ? dateB.getDate() : '0' + dateB.getDate());
+  console.log(madeDate1, madeDate2);
   const params = {
     latitude: latitude,
     longitude: longitude,
