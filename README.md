@@ -1,6 +1,38 @@
 <a id="readme-top"></a>
 
 # Weather App QR7
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#introduction">Introduction</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#installation">Installation</a>
+      <ul>
+        <li><a href="#cloning-sources">Cloning Sources</a></li>
+        <li><a href="#run-the-project">Run the project</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-use">How to use</a>
+     <ul>
+        <li><a href="#search-location">Search location</a></li>
+        <li><a href="#current-location">Current location</a></li>
+        <li><a href="#add-location">Add location</a></li>
+        <li><a href="#day-block-description">Day block description</a></li>
+        <li><a href="#full-weather-information-about-day">Full weather information about day</a></li>
+        <li><a href="#in-addition">In addition</a></li>
+      </ul>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+
 ## Introduction![pin](https://github.com/user-attachments/assets/a22a54e1-cf98-4041-a491-c23b176a1e79)<?xml version="1.0" encoding="UTF-8"?>
 
 **Weather App QR7** is an intuitive open source web application designed to provide you with weather forecasts and a comfortable user experience. It allows you add new locations by setting up latitude and longitude. Locations that were added manually available for 7 days. In my project weather data is given by [open-meteo API](https://open-meteo.com/). 
