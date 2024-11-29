@@ -1,7 +1,14 @@
 <a id="readme-top"></a>
+![qr7-weather-high-resolution-logo (1) (1)](https://github.com/user-attachments/assets/69617ae5-1d57-4aec-b287-91e8897f423b)
+  <p align="center">
+    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+  </p>
 
-# Weather App QR7
+---
 
+**DEAR READER! QR7 HAS WEBSITE: http://qr7.ru/**
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -50,7 +57,7 @@
 
 ## Installation![pin](https://github.com/user-attachments/assets/a22a54e1-cf98-4041-a491-c23b176a1e79)<?xml version="1.0" encoding="UTF-8"?>
 
-*Despite the fact that QR7 has its own web site you can install it and run on your PC.*
+*Despite the fact that QR7 has its own [web site](http://qr7.ru/) you can install it and run on your PC.*
 ### Cloning Sources
 ```
 git clone https://github.com/Vark11/weatherApp.git
