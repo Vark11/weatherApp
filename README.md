@@ -1,9 +1,9 @@
 <a id="readme-top"></a>
 ![qr7-weather-high-resolution-logo (1) (1)](https://github.com/user-attachments/assets/69617ae5-1d57-4aec-b287-91e8897f423b)
   <p align="center">
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/Vark11/weatherApp/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/Vark11/weatherApp/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 
 ---
