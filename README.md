@@ -124,7 +124,7 @@ QR7 also has unique mark up for mobile devices!
   
   Telegram: @Vark102 - Alexandr
   
-  Email: alex@popovfamily.ru - Alexandr
+  Email: ap419837@gmail.com - Alexandr
 
 Project Link: https://github.com/Vark11/weatherApp.git
 
