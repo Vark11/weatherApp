@@ -8,7 +8,7 @@
 
 ---
 
-**DEAR READER! QR7 HAS WEBSITE: http://qr7.ru/**
+**DEAR READER! QR7 HAS WEBSITE: https://qr-7.ru/**
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -57,7 +57,7 @@
 
 ## Installation![pin](https://github.com/user-attachments/assets/a22a54e1-cf98-4041-a491-c23b176a1e79)<?xml version="1.0" encoding="UTF-8"?>
 
-*Despite the fact that QR7 has its own [web site](http://qr7.ru/) you can install it and run on your PC.*
+*Despite the fact that QR7 has its own [web site](https://qr-7.ru/) you can install it and run on your PC.*
 ### Cloning Sources
 ```
 git clone https://github.com/Vark11/weatherApp.git
